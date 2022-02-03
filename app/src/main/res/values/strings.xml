@@ -2,4 +2,7 @@
     <string name="app_name">GooseGame</string>
     <string name="the_adventurer_2">The Adventurer 2</string>
     <string name="nouvelle_partie">Nouvelle partie</string>
+    <string name="scores">Scores</string>
+    <string name="textview">TextView</string>
+    <string name="retour">Retour</string>
 </resources>
