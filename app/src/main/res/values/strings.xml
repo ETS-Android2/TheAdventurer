@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GooseGame</string>
+    <string name="the_adventurer_2">The Adventurer 2</string>
+    <string name="nouvelle_partie">Nouvelle partie</string>
 </resources>
