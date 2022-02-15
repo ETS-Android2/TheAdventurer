@@ -2,6 +2,7 @@ package fr.iut63.a2ddicegameupdate.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,21 +20,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, ScoresActivity.class);
-
         Button buttonScore = findViewById(R.id.buttonScores);
         Button buttonPartie = findViewById(R.id.buttonNouvellePartie);
 
         buttonScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchActivities();
+                switchActivities("scoreActivity");
+            }
+        });
+
+        buttonPartie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchActivities("gameActivity");
             }
         });
     }
 
-    private void switchActivities() {
-        Intent switchActivityIntent = new Intent(this, ScoresActivity.class);
+    private void switchActivities(String activity) {
+
+        Intent switchActivityIntent;
+
+        if(activity.equals("scoreActivity")){
+            switchActivityIntent = new Intent(this, ScoresActivity.class);
+        }
+        else {
+            switchActivityIntent = new Intent(this, DifficultyActivity.class);
+        }
+
         startActivity(switchActivityIntent);
     }
 }

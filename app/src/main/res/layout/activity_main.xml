@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/river"
+    android:background="@drawable/forest"
     tools:context=".activity.MainActivity"
     >
 
+    <!-- Pour sp multiples de 4 et dp multiples de 8 -->
     <TextView
         android:id="@+id/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/the_adventurer_2"
+        android:fontFamily="@font/robus"
+        android:textSize="48sp"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
