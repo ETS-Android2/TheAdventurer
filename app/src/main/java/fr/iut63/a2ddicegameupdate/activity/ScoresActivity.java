@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.InputStream;
 
 import fr.iut63.a2ddicegameupdate.R;
+import fr.iut63.a2ddicegameupdate.data.FileSaviour;
+import fr.iut63.a2ddicegameupdate.data.Loader;
+import fr.iut63.a2ddicegameupdate.data.Saviour;
 import fr.iut63.a2ddicegameupdate.models.ListeScore;
 import fr.iut63.a2ddicegameupdate.models.Resultat;
 
@@ -23,15 +26,11 @@ public class ScoresActivity extends Activity {
         setContentView(R.layout.menu_selector);
 
         Button backButton = findViewById(R.id.buttonRetour);
-        backButton.setOnClickListener(view ->  {
-            finish();
-        });
+        backButton.setOnClickListener(view -> finish());
 
     }
 
     public void affichage(){
-        Resultat res = new Resultat();
-        ListeScore sc = res.chargerResultat();
     }
 
 }

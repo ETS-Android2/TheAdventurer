@@ -1,24 +1,56 @@
 package fr.iut63.a2ddicegameupdate.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.FileNotFoundException;
+
 import fr.iut63.a2ddicegameupdate.R;
+import fr.iut63.a2ddicegameupdate.data.FileLoader;
+import fr.iut63.a2ddicegameupdate.data.FileSaviour;
+import fr.iut63.a2ddicegameupdate.data.Loader;
+import fr.iut63.a2ddicegameupdate.data.Saviour;
+import fr.iut63.a2ddicegameupdate.data.Stub;
 import fr.iut63.a2ddicegameupdate.models.ListeScore;
 import fr.iut63.a2ddicegameupdate.models.Resultat;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String LE_FICHIER_RESULTAT = "test";
+    private ListeScore listeScore;
+    private Saviour saviour = new FileSaviour();
+    private Loader leLoader;
+    private Resultat resultats = null;
+
+    @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        leLoader = new FileLoader();
+        try {
+            listeScore = (ListeScore) leLoader.load(openFileInput("test"));
+        } catch (FileNotFoundException ignored) {
+            Log.d("FILE_NOT_FOUND_EXCEPTION", "File not found line 40.");
+        }
+
+        if (listeScore == null) {
+            leLoader = new Stub();
+            listeScore = (ListeScore) leLoader.load(null);
+        }
+
+        for ( Resultat r: listeScore.getListeResultats()) {
+            Log.d("--- Log Resultat ---", "Score : " + r.getScore() + " Level : " + r.getLevel() );
+        }
 
         Button buttonScore = findViewById(R.id.buttonScores);
         Button buttonPartie = findViewById(R.id.buttonNouvellePartie);
@@ -46,10 +78,34 @@ public class MainActivity extends AppCompatActivity {
             switchActivityIntent = new Intent(this, ScoresActivity.class);
         }
         else {
-            switchActivityIntent = new Intent(this, DifficultyActivity.class);
+            switchActivityIntent = new Intent(this, MenuSelectorActivity.class);
         }
 
         startActivity(switchActivityIntent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onStop() {
+        try {
+            saviour.save(openFileOutput(LE_FICHIER_RESULTAT, MODE_PRIVATE), listeScore);
+        } catch (FileNotFoundException e) {
+            Log.e(getPackageName(), "Impossible de sauvegarder la liste des résultats");
+        }
+
+        super.onStop();
+    }
+
+    public Resultat getResultats() {
+        return resultats;
+    }
+
+    public ListeScore getListeScore() {
+        return listeScore;
     }
 }
 

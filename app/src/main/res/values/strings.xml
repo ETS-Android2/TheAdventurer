@@ -14,4 +14,8 @@
     <string name="difficulty_3">Difficulté Hardcore</string>
     <string name="next">Suivant</string>
     <string name="difficulty_choice">Choisir votre difficulté</string>
+    <string name="avatar_choice">Choix de l\'avatar</string>
+    <string name="avatar_1">Avatar Bleu</string>
+    <string name="avatar_2">Avatar Blanc</string>
+    <string name="avatar_3">Avatar Marron</string>
 </resources>

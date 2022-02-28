@@ -3,7 +3,6 @@
     package="fr.iut63.a2ddicegameupdate">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -23,7 +22,15 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".activity.DifficultyActivity"
+            android:name=".activity.MenuSelectorActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.AvatarSelectorActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.GameActivity"
             android:exported="true">
         </activity>
     </application>
