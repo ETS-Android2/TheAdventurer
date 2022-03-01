@@ -1,34 +1,43 @@
 package fr.iut63.a2ddicegameupdate.models;
 
-public class Case {
-    int idCase;
-    int coordX;
-    int coordY;
-    boolean isStart;
-    boolean isEnd;
-    boolean isMalus;
-    boolean isBonus;
-    int sizeTile;
+public class GameTile {
+    private int idCase = 0;
+    private int coordX;
+    private int coordY;
+    private final boolean start;
+    private final boolean end;
+    private final boolean malus;
+    private final boolean bonus;
+
+    public static final int TILE_SIZE = 32; // en pixel
+
+    public static final int TYPE_EMPTY = 0;
+    public static final int TYPE_BONUS = 1;
+    public static final int TYPE_MALUS = 2;
+    public static final int TYPE_EXIT = 3;
+
+    private int mType = TYPE_EMPTY;
+    private final boolean mVisible = true;
 
     /**
      * Constructor of the Case class
-     *
-     * @param idCase  ID de la case
+     *  @param idCase  ID de la case
      * @param coordX  Coordonnée X
      * @param coordY  Coordonnée Y
-     * @param isStart Est elle la case de départ
+     * @param start Est elle la case de départ
      * @param isBonus Est elle une case bonus
      * @param isMalus Est elle une case malus
-     * @param isEnd   Est elle la case de fin
+     * @param end   Est elle la case de fin
      */
-    public Case(int idCase, int coordX, int coordY, boolean isStart, boolean isBonus, boolean isMalus, boolean isEnd) {
+    public GameTile(int idCase, int coordX, int coordY, boolean isBonus, boolean isMalus, boolean end, boolean start, int mType) {
         this.idCase = idCase;
         this.coordX = coordX;
         this.coordY = coordY;
-        this.isStart = isStart;
-        this.isBonus = isBonus;
-        this.isMalus = isMalus;
-        this.isEnd = isEnd;
+        this.start = start;
+        this.bonus = isBonus;
+        this.malus = isMalus;
+        this.end = end;
+        this.mType = mType;
     }
 
     /**
@@ -64,7 +73,7 @@ public class Case {
      * @return isStart
      */
     public boolean isStart() {
-        return isStart;
+        return start;
     }
 
     /**
@@ -73,7 +82,7 @@ public class Case {
      * @return isEnd
      */
     public boolean isEnd() {
-        return isEnd;
+        return end;
     }
 
     /**
@@ -82,7 +91,7 @@ public class Case {
      * @return isBonus
      */
     public boolean isBonus() {
-        return isBonus;
+        return bonus;
     }
 
     /**
@@ -91,7 +100,7 @@ public class Case {
      * @return isMalus
      */
     public boolean isMalus() {
-        return isMalus;
+        return malus;
     }
 
     /**
@@ -127,7 +136,7 @@ public class Case {
      * @param start setter de la case de départ
      */
     public void setStart(boolean start) {
-        isStart = start;
+        start = start;
     }
 
     /**
@@ -136,6 +145,14 @@ public class Case {
      * @param end setter de la case de fin
      */
     public void setEnd(boolean end) {
-        isEnd = end;
+        end = end;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameTile gameTile = (GameTile) o;
+        return idCase == gameTile.idCase && coordX == gameTile.coordX && coordY == gameTile.coordY && start == gameTile.start && end == gameTile.end && malus == gameTile.malus && bonus == gameTile.bonus && mType == gameTile.mType && mVisible == gameTile.mVisible;
     }
 }

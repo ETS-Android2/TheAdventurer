@@ -6,14 +6,17 @@ import androidx.annotation.Nullable;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 public class FileLoader implements Loader {
 
+
+
     @Nullable
     @Override
-    public Serializable load(@NonNull FileInputStream fichier) {
+    public Serializable load(@NonNull InputStream fichier) {
         Serializable retour = null;
         try (ObjectInputStream ois = new ObjectInputStream(fichier)) {
             retour  = (Serializable) ois.readObject();

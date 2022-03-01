@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Map {
     private final int sizeTile;
     private final int sizeMap;
-    private final ArrayList<Case> map;
+    private final ArrayList<GameTile> map;
     private int coordStartX;
     private int coordStartY;
 
@@ -17,7 +17,7 @@ public class Map {
     public Map(int sizeTile, int sizeMap) {
         this.sizeTile = sizeTile;
         this.sizeMap = sizeMap;
-        this.map = new ArrayList<Case>();
+        this.map = new ArrayList<GameTile>();
         this.coordStartX = getCoordStartX();
         this.coordStartY = getCoordStartY();
     }
@@ -26,11 +26,11 @@ public class Map {
      * Method to add a case to the map
      * @param c case to add
      */
-    public void addCase(Case c) {
+    public void addCase(GameTile c) {
         this.map.add(c);
-        if(c.isStart){
-            setCoordStartX(c.coordX);
-            setCoordStartY(c.coordY);
+        if(c.isMalus()){
+            setCoordStartX(c.getCoordX());
+            setCoordStartY(c.getCoordY());
         }
     }
 
@@ -38,7 +38,7 @@ public class Map {
      * Method to remove a case from the map
      * @param c Caseto remove
      */
-    public void removeCase(Case c) {
+    public void removeCase(GameTile c) {
         this.map.remove(c);
     }
 
@@ -46,7 +46,7 @@ public class Map {
      * Method to get the map
      * @return map
      */
-    public ArrayList<Case> getMap() {
+    public ArrayList<GameTile> getMap() {
         return this.map;
     }
 
@@ -103,7 +103,7 @@ public class Map {
      * @param c case given
      * @return next Case
      */
-    public Case getNextCase(Case c){
+    public GameTile getNextCase(GameTile c){
         int i,j;
         for(i = 0; i < this.map.size(); i++){
             if(c == this.map.get(i)){
@@ -123,9 +123,9 @@ public class Map {
      * Method to get the start case of the map
      * @return starting case getter
      */
-    public Case getStartCase(){
-        for(Case c : this.map){
-            if(c.isStart){
+    public GameTile getStartCase(){
+        for(GameTile c : this.map){
+            if(c.isStart()){
                 System.out.println(c);
                 return c;
             }

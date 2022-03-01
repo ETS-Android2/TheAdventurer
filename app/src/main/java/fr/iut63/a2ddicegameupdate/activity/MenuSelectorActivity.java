@@ -19,6 +19,7 @@ public class MenuSelectorActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level_selector);
 
+
         RadioButton difficultychoice1 = findViewById(R.id.difficulty_button_1);
         difficultychoice1.setOnClickListener(view -> difficulty = 1);
 

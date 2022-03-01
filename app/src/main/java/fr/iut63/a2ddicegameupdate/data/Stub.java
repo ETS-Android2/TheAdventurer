@@ -1,6 +1,7 @@
 package fr.iut63.a2ddicegameupdate.data;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ import fr.iut63.a2ddicegameupdate.models.ListeScore;
 
 public class Stub implements Loader {
 
-    public Serializable load(FileInputStream nomDuFichier){
+    public Serializable load(InputStream nomDuFichier){
         ListeScore listeS = new ListeScore();
         listeS.addResultat(12564, 2, new Date(System.currentTimeMillis()));
         listeS.addResultat(1564, 1, new Date(System.currentTimeMillis()));
@@ -23,3 +24,7 @@ public class Stub implements Loader {
     }
 
 }
+
+
+// https://github.com/ruscoe/Android-Tile-Based-Game
+// https://gitlab.iut-clermont.uca.fr/jutheme/projetjavafx/-/blob/main/code/ressources/image/personnage/Perso1.2.png

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,10 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 
 import fr.iut63.a2ddicegameupdate.R;
 import fr.iut63.a2ddicegameupdate.data.FileLoader;
@@ -27,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String LE_FICHIER_RESULTAT = "test";
     private ListeScore listeScore;
     private Saviour saviour = new FileSaviour();
-    private Loader leLoader;
+    private Loader leLoader = new FileLoader();
     private Resultat resultats = null;
 
     @SuppressLint("LongLogTag")
@@ -35,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        leLoader = new FileLoader();
-        try {
-            listeScore = (ListeScore) leLoader.load(openFileInput("test"));
-        } catch (FileNotFoundException ignored) {
-            Log.d("FILE_NOT_FOUND_EXCEPTION", "File not found line 40.");
-        }
 
         if (listeScore == null) {
             leLoader = new Stub();

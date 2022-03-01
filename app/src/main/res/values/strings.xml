@@ -18,4 +18,8 @@
     <string name="avatar_1">Avatar Bleu</string>
     <string name="avatar_2">Avatar Blanc</string>
     <string name="avatar_3">Avatar Marron</string>
+    <string name="about_label">About ?</string>
+    <string name="about_shortcut">shortcut</string>
+    <string name="exit_label">exit</string>
+    <string name="exit_shortcut">shortcut-exit</string>
 </resources>
