@@ -48,11 +48,10 @@ public class Play extends Activity
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-if (listeScore == null) {
-            leLoader = new Stub();
-            listeScore = (ListeScore) leLoader.load(null);
-        }
-
+//        if (listeScore == null) {
+//            leLoader = new Stub();
+//            listeScore = (ListeScore) leLoader.load(null);
+//        }
         return true;
     }
 

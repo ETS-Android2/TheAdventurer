@@ -8,13 +8,6 @@
     tools:context=".activity.MainActivity"
     tools:ignore="MissingDefaultResource">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/avatar_choice"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -33,7 +26,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/avatar_1"
-            />
+            android:textColor="#455A64" />
 
         <View
             android:layout_width="0dip"
@@ -46,7 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/avatar_2" />
+            android:text="@string/avatar_2"
+            android:textColor="#212121" />
 
         <View
             android:layout_width="0dip"
@@ -59,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/avatar_3" />
+            android:text="@string/avatar_3"
+            android:textColor="#BCAAA4"
+            tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck" />
 
         <View
             android:layout_width="0dip"

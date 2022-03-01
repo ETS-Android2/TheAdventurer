@@ -12,12 +12,13 @@
     <string name="difficulty_1">Difficulté Facile</string>
     <string name="difficulty_2">Difficulté Moyen</string>
     <string name="difficulty_3">Difficulté Hardcore</string>
+    <string name="avatar_1">Darius</string>
+    <string name="avatar_2">Geralt</string>
+    <string name="avatar_3">Xera</string>
+    <string name="lancerDe">Lancer le dé</string>
     <string name="next">Suivant</string>
     <string name="difficulty_choice">Choisir votre difficulté</string>
     <string name="avatar_choice">Choix de l\'avatar</string>
-    <string name="avatar_1">Avatar Bleu</string>
-    <string name="avatar_2">Avatar Blanc</string>
-    <string name="avatar_3">Avatar Marron</string>
     <string name="about_label">About ?</string>
     <string name="about_shortcut">shortcut</string>
     <string name="exit_label">exit</string>
