@@ -3,6 +3,7 @@ package fr.iut63.a2ddicegameupdate.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 
@@ -44,6 +45,9 @@ public class AvatarSelectorActivity extends Activity {
             i.putExtra("difficulty", value);
             i.putExtra("avatar", avatar);
             startActivity(i);
+            Log.d("Start", "Start OK");
+        }else{
+            Log.d("Start", "Start failed.");
         }
     }
 }
