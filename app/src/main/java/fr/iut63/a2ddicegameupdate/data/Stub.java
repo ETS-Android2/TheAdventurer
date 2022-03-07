@@ -13,12 +13,12 @@ public class Stub implements Loader {
 
     public Serializable load(InputStream nomDuFichier){
         ListeScore listeS = new ListeScore();
-        listeS.addResultat(12564, 2, new Date(System.currentTimeMillis()));
-        listeS.addResultat(1564, 1, new Date(System.currentTimeMillis()));
-        listeS.addResultat(1254, 1, new Date(System.currentTimeMillis()));
-        listeS.addResultat(64, 3, new Date(System.currentTimeMillis()));
-        listeS.addResultat(124, 1, new Date(System.currentTimeMillis()));
-        listeS.addResultat(12545, 2, new Date(System.currentTimeMillis()));
+        listeS.addResultat(12564, 2, "22-07-2133");
+        listeS.addResultat(1564, 1, "22-07-2133");
+        listeS.addResultat(1254, 1, "22-07-2133");
+        listeS.addResultat(64, 3, "22-07-2133");
+        listeS.addResultat(124, 1, "22-07-2133");
+        listeS.addResultat(12545, 2, "22-07-2133");
 
         return listeS;
     }

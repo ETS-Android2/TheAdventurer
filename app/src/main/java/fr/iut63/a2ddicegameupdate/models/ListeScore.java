@@ -13,7 +13,7 @@ public class ListeScore implements Serializable {
         return Collections.unmodifiableList(listeResultats);
     }
 
-    public void addResultat(int score, int level, Date date) {
+    public void addResultat(int score, int level, String date) {
         listeResultats.add(new Resultat(score, level, date));
     }
 }

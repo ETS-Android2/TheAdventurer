@@ -17,9 +17,9 @@ import java.util.Date;
 public class Resultat implements Serializable {
     private int score;
     private int level;
-    private Date dateRecord;
+    private String dateRecord;
 
-    public Resultat(int score, int level, Date date) {
+    public Resultat(int score, int level, String date) {
         this.score = score;
         this.level = level;
         this.dateRecord = date;
@@ -41,11 +41,11 @@ public class Resultat implements Serializable {
         this.level = level;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return dateRecord;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.dateRecord = date;
     }
 }

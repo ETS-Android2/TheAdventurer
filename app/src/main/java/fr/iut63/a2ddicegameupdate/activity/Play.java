@@ -11,9 +11,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import fr.iut63.a2ddicegameupdate.R;
 import fr.iut63.a2ddicegameupdate.activity.ScoresActivity;
 import fr.iut63.a2ddicegameupdate.models.GameView;
+import fr.iut63.a2ddicegameupdate.models.map.DrawMap;
+import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 
 public class Play extends Activity
 {
@@ -21,6 +25,12 @@ public class Play extends Activity
 
     private final DisplayMetrics mMetrics = new DisplayMetrics();
     private float mScreenDensity;
+    private DrawMap drawMap;
+    private ConstraintLayout constraintLayout;
+
+    private int height;
+    private int width;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -33,11 +43,15 @@ public class Play extends Activity
         getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
         mScreenDensity = mMetrics.density;
 
+
+        height = mMetrics.heightPixels;
+        width = mMetrics.widthPixels;
+
         int stage = 1;
         int level = 1;
-
-        Log.d("Tile Game Example", "Starting game at stage: " + stage + ", level: " + level);
-        mGameView = new GameView(mContext, this, stage, level, mScreenDensity);
+        constraintLayout = findViewById(R.id.constLayoutGame);
+        drawMap = new DrawMap(this, new MapGeneration(width, height));
+        drawMap.drawMap();
 
         setContentView(mGameView);
     }
@@ -83,5 +97,9 @@ public class Play extends Activity
         super.onPause();
 
         //mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
+    }
+
+    public ConstraintLayout getConstraintLayout() {
+        return constraintLayout;
     }
 }
