@@ -1,6 +1,6 @@
-package fr.iut63.a2ddicegameupdate.models;
+package fr.iut63.a2ddicegameupdate.models.player;
 
-public class Personnage {
+public class Player {
     private int idAvatar;
     private int numImage;
     private int coordX;
@@ -9,13 +9,11 @@ public class Personnage {
     /**
      * Constructor for the Avatar class
      * @param idAvatar id du personnage
-     * @param image numéro de l'image
      * @param coordX Coordonnée X
      * @param coordY Coordonnée Y
      */
-    public Personnage(int idAvatar, int image, int coordX, int coordY) {
+    public Player(int idAvatar, int coordX, int coordY) {
         this.idAvatar = idAvatar;
-        this.numImage = image;
         this.coordX = coordX;
         this.coordY = coordY;
     }

@@ -41,13 +41,13 @@ public class AvatarSelectorActivity extends Activity {
 
         if (extras != null) {
             int value = extras.getInt("difficulty");
-            Intent i = new Intent(this, GameActivity.class);
+            Intent i = new Intent(this, Play.class);
             i.putExtra("difficulty", value);
-            i.putExtra("avatar", avatar);
+            i.putExtra("avatar", 2);
             startActivity(i);
-            Log.d("Start", "Start OK");
+            Log.e("Start", "Start OK");
         }else{
-            Log.d("Start", "Start failed.");
+            Log.e("ERROR", "Start failed.");
         }
     }
 }

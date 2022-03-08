@@ -13,7 +13,8 @@ public class Map {
     private final int offsetY;
     private final boolean offsetXFlag;
     private final boolean offsetYFlag;
-    private int[][] map;
+    private int[][] mapFirstLayout;
+    private int[][] mapSecondLayout;
 
     /**
      * Constructor of the Map class
@@ -97,23 +98,40 @@ public class Map {
         return offsetY;
     }
 
+    public int getOffsetX() {
+        return offsetX;
+    }
+
     public boolean isOffsetYFlag() {
         return offsetYFlag;
     }
 
-    public int[][] getMap() {
-        return map;
+    public boolean isOffsetXFlag() {
+        return offsetXFlag;
     }
 
-    public void setMap(int[][] map) {
-        this.map = map;
+
+    public int[][] getMapFirstLayout() {
+        return mapFirstLayout;
+    }
+
+    public void setMapFirstLayout(int[][] mapFirstLayout) {
+        this.mapFirstLayout = mapFirstLayout;
+    }
+
+    public int[][] getMapSecondLayout() {
+        return mapSecondLayout;
+    }
+
+    public void setMapSecondLayout(int[][] mapSecondLayout) {
+        this.mapSecondLayout = mapSecondLayout;
     }
 
     public void setMapTile(int xCord , int yCord , int updatedValue){
-        this.map[yCord][xCord] = updatedValue;
+        this.mapFirstLayout[yCord][xCord] = updatedValue;
     }
 
     public boolean isCaseEmpty(int xCord , int yCord){
-        return map[yCord][xCord] == 0;
+        return mapFirstLayout[yCord][xCord] == 0;
     }
 }

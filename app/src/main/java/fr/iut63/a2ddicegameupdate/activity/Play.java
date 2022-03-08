@@ -1,31 +1,21 @@
 package fr.iut63.a2ddicegameupdate.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import fr.iut63.a2ddicegameupdate.R;
-import fr.iut63.a2ddicegameupdate.activity.ScoresActivity;
-import fr.iut63.a2ddicegameupdate.models.GameView;
-import fr.iut63.a2ddicegameupdate.models.map.DrawMap;
+import fr.iut63.a2ddicegameupdate.models.GameDrawer;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 
 public class Play extends Activity
 {
-    private GameView mGameView = null;
-
-    private final DisplayMetrics mMetrics = new DisplayMetrics();
-    private float mScreenDensity;
-    private DrawMap drawMap;
+    private final DisplayMetrics displayMetrics = new DisplayMetrics();
+    private GameDrawer gameDrawer;
     private ConstraintLayout constraintLayout;
 
     private int height;
@@ -37,23 +27,18 @@ public class Play extends Activity
     {
         super.onCreate(savedInstanceState);
 
-        Context mContext = getApplicationContext();
+        setContentView(R.layout.game_panel);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindowManager().getDefaultDisplay().getMetrics(mMetrics);
-        mScreenDensity = mMetrics.density;
-
-
-        height = mMetrics.heightPixels;
-        width = mMetrics.widthPixels;
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
 
         int stage = 1;
         int level = 1;
         constraintLayout = findViewById(R.id.constLayoutGame);
-        drawMap = new DrawMap(this, new MapGeneration(width, height));
-        drawMap.drawMap();
-
-        setContentView(mGameView);
+        gameDrawer = new GameDrawer(this, new MapGeneration(width, height));
+        gameDrawer.drawMap();
+        gameDrawer.drawPlayer();
     }
 
     @Override
@@ -97,6 +82,16 @@ public class Play extends Activity
         super.onPause();
 
         //mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     public ConstraintLayout getConstraintLayout() {

@@ -30,14 +30,15 @@ public class GameActivity  extends Activity {
 
         if(avatar == 3){
 //            imagePersoPath ="R.drawable.perso32";
-            imageViewPerso.setImageResource(R.drawable.p1);
+            //imageViewPerso.setImageResource(R.drawable.);
         }else if(avatar == 2){
 //            imagePersoPath ="R.drawable.perso22";
-            imageViewPerso.setImageResource(R.drawable.perso22);
+            //imageViewPerso.setImageResource(R.drawable.perso22);
         }else{
 //            imagePersoPath ="R.drawable.perso12";
             imageViewPerso.setImageResource(R.drawable.perso12);
         }
+        imageViewPerso.setImageResource(R.drawable.perso12);
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.layout);
         layout.addView(imageViewPerso);
 

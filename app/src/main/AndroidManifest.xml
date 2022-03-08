@@ -32,7 +32,7 @@
             android:name=".activity.GameActivity"
             android:exported="true" />
         <activity
-            android:name=".activity.AvatarActivity"
+            android:name=".activity.Play"
             android:exported="true" />
     </application>
 

@@ -43,7 +43,7 @@ public class GameTile {
     /**
      * Method to get the id of the case
      *
-     * @return idCase
+     * @return idCaseY
      */
     public int getIdCase() {
         return idCase;

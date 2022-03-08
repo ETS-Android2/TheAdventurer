@@ -1,12 +1,8 @@
 package fr.iut63.a2ddicegameupdate.data;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Date;
 
-import fr.iut63.a2ddicegameupdate.models.Personnage;
-import fr.iut63.a2ddicegameupdate.models.Resultat;
 import fr.iut63.a2ddicegameupdate.models.ListeScore;
 
 public class Stub implements Loader {
