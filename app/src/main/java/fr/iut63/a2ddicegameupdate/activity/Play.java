@@ -2,15 +2,25 @@ package fr.iut63.a2ddicegameupdate.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.util.List;
+
 import fr.iut63.a2ddicegameupdate.R;
 import fr.iut63.a2ddicegameupdate.models.GameDrawer;
+import fr.iut63.a2ddicegameupdate.models.map.Map;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
+import fr.iut63.a2ddicegameupdate.models.player.AvatarMovement;
 
 public class Play extends Activity
 {
@@ -20,6 +30,8 @@ public class Play extends Activity
 
     private int height;
     private int width;
+    private List<Bitmap> avatar;
+    private Map map;
 
 
     @Override
@@ -33,12 +45,22 @@ public class Play extends Activity
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
+//        Bundle extras = getIntent().getExtras();
+//        if (extras != null){
+//            avatar = extras.getInt("avatar");
+//        }
+
         int stage = 1;
         int level = 1;
         constraintLayout = findViewById(R.id.constLayoutGame);
-        gameDrawer = new GameDrawer(this, new MapGeneration(width, height));
+        map = new MapGeneration(width, height);
+        gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap();
-        gameDrawer.drawPlayer();
+        ImageView imgPerso = gameDrawer.drawPlayer();
+        AvatarMovement avatarMovement = new AvatarMovement();
+        Button button_roll_dice = findViewById(R.id.button_roll_dice);
+        button_roll_dice.setOnClickListener(view -> avatarMovement.avatarMovement(imgPerso, map, this, avatar));
+//        button_roll_dice.setOnClickListener(view -> Log.d("LanceDe", "Dé lancé"));
     }
 
     @Override

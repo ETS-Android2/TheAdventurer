@@ -43,7 +43,7 @@ public class AvatarSelectorActivity extends Activity {
             int value = extras.getInt("difficulty");
             Intent i = new Intent(this, Play.class);
             i.putExtra("difficulty", value);
-            i.putExtra("avatar", 2);
+            i.putExtra("avatar", avatar);
             startActivity(i);
             Log.e("Start", "Start OK");
         }else{

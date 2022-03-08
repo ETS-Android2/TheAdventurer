@@ -83,25 +83,30 @@ public class GameDrawer {
                 tileIMG.setY(i * map.getTileLengthY());
 
                 activityGame.getConstraintLayout().addView(tileIMG);
-                if()
+//                if()
             }
         }
     }
 
-    public void drawPlayer() {
+    public ImageView drawPlayer() {
         for (int i = 0; i < mapH; i++) {
             for (int j = 0; j < mapW; j++) {
-                if(i == 24 && j == 0){
+                if (i == 24 && j == 0) {
                     ImageView tileIMG = new ImageView(activityGame);
 
-                    tileIMG.setImageBitmap(avatar.get(0));
+                    tileIMG.setImageBitmap(avatar.get(4));
                     tileIMG.setX(j * map.getTileLengthX());
                     tileIMG.setY(i * map.getTileLengthY());
 
                     activityGame.getConstraintLayout().addView(tileIMG);
+                    return tileIMG;
                 }
             }
         }
+        return null;
+    }
+    public List<Bitmap> getAvatar(){
+        return avatar;
     }
 
 }
