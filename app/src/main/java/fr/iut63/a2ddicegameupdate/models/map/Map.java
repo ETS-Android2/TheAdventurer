@@ -1,10 +1,15 @@
 package fr.iut63.a2ddicegameupdate.models.map;
 
+import java.util.ArrayList;
+
+import fr.iut63.a2ddicegameupdate.models.Case;
+
+
 public class Map {
     private final int sizeTile;
     private int coordStartX;
     private int coordStartY;
-
+    private final ArrayList<Case> map;
     private final int resolutionWidth;
     private final int resolutionHeight;
     private int tileLengthX;
@@ -23,6 +28,7 @@ public class Map {
 
         resolutionWidth = mapWidth;
         resolutionHeight = mapHeight;
+        this.map = new ArrayList<>();
 
         offsetX = tileLengthX * 64 - resolutionWidth;
         offsetY = tileLengthY * 64 - resolutionHeight;
@@ -40,6 +46,42 @@ public class Map {
      */
     public int getSizeTile() {
         return this.sizeTile;
+    }
+
+    /**
+     * Method to add a case to the map
+     * @param c
+     */
+    public void addCase(Case c) {
+        this.map.add(c);
+        if(c.getIsStart()){
+            setCoordStartX(c.getCoordX());
+            setCoordStartY(c.getCoordY());
+        }
+    }
+
+    /**
+     * Method to get the map
+     * @return map
+     */
+    public ArrayList<Case> getMap() {
+        return this.map;
+    }
+
+    public Case getNextCase(Case c){
+        int i,j;
+        for(i = 0; i < this.map.size(); i++){
+            if(c == this.map.get(i)){
+                j=i+1;
+                try {
+                    return this.map.get(j);
+                }catch (IndexOutOfBoundsException e){
+                    return null;
+                }
+
+            }
+        }
+        return c;
     }
 
     /**

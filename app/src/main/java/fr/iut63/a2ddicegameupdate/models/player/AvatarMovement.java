@@ -4,29 +4,35 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.iut63.a2ddicegameupdate.activity.Play;
+import fr.iut63.a2ddicegameupdate.models.Case;
 import fr.iut63.a2ddicegameupdate.models.map.Map;
 
 public class AvatarMovement {
+    private ArrayList<Case> listeCase;
+    private Case actualCase;
+    private Case oldCase;
 
     public void avatarMovement(ImageView imgPerso, Map map, Play activityGame, List<Bitmap> avatar){
-//        int mapH = map.getMapFirstLayout().length;
-//        int mapW = map.getMapFirstLayout()[0].length;
-//        for (int i = 0; i < mapH; i++) {
-//            for (int j = 0; j < mapW; j++) {
-//                if (i == 24 && j == 0) {
-//                    for(int d=0; d<avatar.toArray().length; d++){
-//                        Log.d("Avatar", avatar.get(d).toString());
-//                    }
-//                    imgPerso.setImageBitmap(avatar.get(4));
-//                    imgPerso.setX(j * map.getTileLengthX()+32);
-//                    imgPerso.setY(i * map.getTileLengthY());
-//
-//                    activityGame.getConstraintLayout().addView(imgPerso);
-//                }
-//            }
-//        }
+        System.out.println("Avatar mouvement");
+//        listeCase = map.getMap();
+
+        oldCase = actualCase;
+        actualCase = map.getNextCase(oldCase);
+        if(actualCase == null){
+            System.out.print("Case actuelle vide");
+        }else{
+            System.out.print("Case OK");
+        }
+        System.out.print(actualCase);
+
+//        int x = actualCase.getCoordX();
+//        int y = actualCase.getCoordY();
+//        imgPerso.setX(x * map.getTileLengthX());
+//        imgPerso.setY(y * map.getTileLengthY());
+
     }
 }

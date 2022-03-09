@@ -53,7 +53,7 @@ public class Play extends Activity
         int stage = 1;
         int level = 1;
         constraintLayout = findViewById(R.id.constLayoutGame);
-        map = new MapGeneration(width, height);
+        map = new MapGeneration(width, height, map, level);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap();
         ImageView imgPerso = gameDrawer.drawPlayer();

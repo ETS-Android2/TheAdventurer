@@ -1,16 +1,62 @@
 package fr.iut63.a2ddicegameupdate.models.map;
 
-public class MapGeneration extends Map{
+import fr.iut63.a2ddicegameupdate.models.Case;
 
+public class MapGeneration extends Map{
+    private final int[][] coordFirstDifficultyMap = {{1,24},{2,24},{3,24},{4,24},{5,24},{5,23}};
+    private int[][] coordMap = {};
+    private Map map;
     /**
      * Génère une map par tableau
      * @param mapWidth  int Largeur de la Fenetre
      * @param mapHeight int Longueur de la Fenetre
      */
-    public MapGeneration(int mapWidth, int mapHeight) {
+    public MapGeneration(int mapWidth, int mapHeight, Map map, int difficulty) {
         super(mapWidth, mapHeight);
+        this.map = map;
         setMapFirstLayout(generateFirstLayoutMapArray());
         setMapSecondLayout(generateSecondLayoutMapArray());
+        createCaseList(difficulty);
+    }
+
+    /**
+     * Method which create the caselist of the map
+     * @param difficulty
+     */
+    public void createCaseList(int difficulty) {
+
+        int j = 1, k;
+        if(difficulty==1){
+            coordMap = coordFirstDifficultyMap;
+        }else{
+            if (difficulty==2){
+//                coordMap = coordSecondDifficultyMap;
+            }else{
+//                coordMap = coordThirdDifficultyMap;
+            }
+        }
+        for(int[] i : coordMap){
+            boolean boolStart = j == 1;
+            boolean boolEnd = j == coordMap.length;
+            boolean bonus = false, malus = false;
+
+            if(difficulty == 1) k = (int) (Math.random() * 10);
+            else if(difficulty == 2) k = (int) (Math.random() * 8);
+            else k = (int) (Math.random() * 6);
+
+            if(k == 1 || k == 2) bonus = true;
+            else if(k == 3) malus = true;
+
+            Case case1 = new Case(j, i[0], i [1], boolStart, bonus, malus, boolEnd, map);
+            System.out.println(case1);
+//            map.addCase(case1);
+            j++;
+        }
+
+
+        if (difficulty != 1 && difficulty != 2 && difficulty != 3) {
+            System.out.println("Difficulty not found");
+        }
     }
 
     /**
