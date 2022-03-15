@@ -31,7 +31,7 @@ public class Play extends Activity
     private int height;
     private int width;
     private List<Bitmap> avatar;
-    private Map map;
+    private MapGeneration map;
 
 
     @Override
@@ -45,14 +45,10 @@ public class Play extends Activity
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-//        Bundle extras = getIntent().getExtras();
-//        if (extras != null){
-//            avatar = extras.getInt("avatar");
-//        }
-
         int stage = 1;
         int level = 1;
         constraintLayout = findViewById(R.id.constLayoutGame);
+
         map = new MapGeneration(width, height, map, level);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap();
@@ -61,6 +57,8 @@ public class Play extends Activity
         Button button_roll_dice = findViewById(R.id.button_roll_dice);
         button_roll_dice.setOnClickListener(view -> avatarMovement.avatarMovement(imgPerso, map, this, avatar));
 //        button_roll_dice.setOnClickListener(view -> Log.d("LanceDe", "Dé lancé"));
+
+
     }
 
     @Override

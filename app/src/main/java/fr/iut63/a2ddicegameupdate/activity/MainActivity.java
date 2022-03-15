@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String LE_FICHIER_RESULTAT = "test";
     private ListeScore listeScore;
     private final Resultat resultats = null;
+    private Saviour leSauveur = new FileSaviour();
+    private Loader leLoader;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -50,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
 
         buttonScore.setOnClickListener(view -> switchActivities("scoreActivity"));
         buttonPartie.setOnClickListener(view -> switchActivities("gameActivity"));
+
+        leLoader = new FileLoader();
+        try {
+            listeScore = (ListeScore) leLoader.load(openFileInput("test.txt"));
+        } catch (FileNotFoundException e) {
+        }
+
+        if (listeScore == null) {
+            leLoader = new Stub();
+            listeScore = (ListeScore) leLoader.load(null);
+        }
     }
 
     private void switchActivities(String activity) {
@@ -73,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
+        try {
+            leSauveur.save(openFileOutput("test.txt", MODE_PRIVATE), listeScore);
+        } catch (FileNotFoundException e) {
+            Log.e(getPackageName(), "Impossible de sauvegarder la promotion");
+        }
+
         super.onStop();
     }
 

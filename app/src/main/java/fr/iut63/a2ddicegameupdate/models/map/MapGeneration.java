@@ -1,5 +1,7 @@
 package fr.iut63.a2ddicegameupdate.models.map;
 
+import java.util.ArrayList;
+
 import fr.iut63.a2ddicegameupdate.models.Case;
 
 public class MapGeneration extends Map{
@@ -47,9 +49,9 @@ public class MapGeneration extends Map{
             if(k == 1 || k == 2) bonus = true;
             else if(k == 3) malus = true;
 
-            Case case1 = new Case(j, i[0], i [1], boolStart, bonus, malus, boolEnd, map);
+            Case case1 = new Case(j, i[0], i[1], boolStart, bonus, malus, boolEnd, map);
             System.out.println(case1);
-//            map.addCase(case1);
+            //map.addCase(case1);
             j++;
         }
 
@@ -57,6 +59,10 @@ public class MapGeneration extends Map{
         if (difficulty != 1 && difficulty != 2 && difficulty != 3) {
             System.out.println("Difficulty not found");
         }
+    }
+
+    public ArrayList<Case> getPlayerMap(){
+        return map.getMap();
     }
 
     /**

@@ -51,7 +51,7 @@ public class Map {
     /**
      * Method to add a case to the map
      * @param c
-     */
+    */
     public void addCase(Case c) {
         this.map.add(c);
         if(c.getIsStart()){
@@ -59,6 +59,8 @@ public class Map {
             setCoordStartY(c.getCoordY());
         }
     }
+
+
 
     /**
      * Method to get the map

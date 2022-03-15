@@ -83,7 +83,6 @@ public class GameDrawer {
                 tileIMG.setY(i * map.getTileLengthY());
 
                 activityGame.getConstraintLayout().addView(tileIMG);
-//                if()
             }
         }
     }

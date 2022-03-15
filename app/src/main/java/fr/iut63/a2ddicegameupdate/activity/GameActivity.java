@@ -25,25 +25,13 @@ public class GameActivity  extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
-            avatar = extras.getInt("avatar");
+            avatar = 4;
         }
 
-        if(avatar == 3){
-//            imagePersoPath ="R.drawable.perso32";
-            //imageViewPerso.setImageResource(R.drawable.);
-        }else if(avatar == 2){
-//            imagePersoPath ="R.drawable.perso22";
-            //imageViewPerso.setImageResource(R.drawable.perso22);
-        }else{
-//            imagePersoPath ="R.drawable.perso12";
-            imageViewPerso.setImageResource(R.drawable.perso12);
-        }
         imageViewPerso.setImageResource(R.drawable.perso12);
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.layout);
         layout.addView(imageViewPerso);
 
-
-//        Bundle extras = getIntent().getExtras();
-//        Log.d("EXTRA", extras.getString("difficulty"));
+        Log.d("EXTRA", extras.getString("difficulty"));
     }
 }

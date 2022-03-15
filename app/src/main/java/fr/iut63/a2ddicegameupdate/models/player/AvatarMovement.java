@@ -10,15 +10,20 @@ import java.util.List;
 import fr.iut63.a2ddicegameupdate.activity.Play;
 import fr.iut63.a2ddicegameupdate.models.Case;
 import fr.iut63.a2ddicegameupdate.models.map.Map;
+import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 
 public class AvatarMovement {
     private ArrayList<Case> listeCase;
     private Case actualCase;
     private Case oldCase;
 
-    public void avatarMovement(ImageView imgPerso, Map map, Play activityGame, List<Bitmap> avatar){
+    public void avatarMovement(ImageView imgPerso, MapGeneration map, Play activityGame, List<Bitmap> avatar){
         System.out.println("Avatar mouvement");
-//        listeCase = map.getMap();
+        listeCase = map.getPlayerMap();
+        Log.d("TAILLE", " : " + listeCase.toArray().length);
+        for(Case i : listeCase){
+            Log.d("MAP", "Coord : " + i.getCoordX() + i.getCoordY());
+        }
 
         oldCase = actualCase;
         actualCase = map.getNextCase(oldCase);
