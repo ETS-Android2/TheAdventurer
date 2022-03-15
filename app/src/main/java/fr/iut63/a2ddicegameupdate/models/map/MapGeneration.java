@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import fr.iut63.a2ddicegameupdate.models.Case;
 
 public class MapGeneration extends Map{
-    private final int[][] coordFirstDifficultyMap = {{1,24},{2,24},{3,24},{4,24},{5,24},{5,23}};
+    private final int[][] coordFirstDifficultyMap = {{1,28},{2,28},{3,28},{4,28},{5,28},{6,28},{6,27},{5,37},{5,36},{5,35}};
     private int[][] coordMap = {};
     private Map map;
     /**
@@ -13,9 +13,9 @@ public class MapGeneration extends Map{
      * @param mapWidth  int Largeur de la Fenetre
      * @param mapHeight int Longueur de la Fenetre
      */
-    public MapGeneration(int mapWidth, int mapHeight, Map map, int difficulty) {
+    public MapGeneration(int mapWidth, int mapHeight, int difficulty) {
         super(mapWidth, mapHeight);
-        this.map = map;
+        this.map = new Map(mapWidth, mapHeight);
         setMapFirstLayout(generateFirstLayoutMapArray());
         setMapSecondLayout(generateSecondLayoutMapArray());
         createCaseList(difficulty);
@@ -50,8 +50,8 @@ public class MapGeneration extends Map{
             else if(k == 3) malus = true;
 
             Case case1 = new Case(j, i[0], i[1], boolStart, bonus, malus, boolEnd, map);
-            System.out.println(case1);
-            //map.addCase(case1);
+            map.addCase(case1);
+            System.out.println("Case add : "+case1);
             j++;
         }
 
@@ -63,6 +63,10 @@ public class MapGeneration extends Map{
 
     public ArrayList<Case> getPlayerMap(){
         return map.getMap();
+    }
+
+    public Map getMapTile(){
+        return this.map;
     }
 
     /**

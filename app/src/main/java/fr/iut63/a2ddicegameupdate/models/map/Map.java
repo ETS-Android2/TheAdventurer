@@ -9,7 +9,7 @@ public class Map {
     private final int sizeTile;
     private int coordStartX;
     private int coordStartY;
-    private final ArrayList<Case> map;
+    private ArrayList<Case> map;
     private final int resolutionWidth;
     private final int resolutionHeight;
     private int tileLengthX;

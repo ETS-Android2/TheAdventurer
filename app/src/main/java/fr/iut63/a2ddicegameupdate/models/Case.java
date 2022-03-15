@@ -25,7 +25,7 @@ public class Case {
      * @param map
      */
     public Case(int idCase, int coordX, int coordY, boolean isStart, boolean isBonus, boolean isMalus, boolean isEnd, Map map) {
-//        this.sizeTile = map.getSizeTile();
+        this.sizeTile = map.getSizeTile();
         this.idCase = idCase;
         this.coordX = coordX;
         this.coordY = coordY;
@@ -129,5 +129,9 @@ public class Case {
      */
     public void setEnd(boolean end) {
         isEnd = end;
+    }
+
+    public int getSizeTile(){
+        return this.sizeTile;
     }
 }
