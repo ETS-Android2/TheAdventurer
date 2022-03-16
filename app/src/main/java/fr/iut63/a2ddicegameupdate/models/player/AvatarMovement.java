@@ -16,36 +16,31 @@ public class AvatarMovement {
     private ArrayList<Case> listeCase;
     private Case actualCase;
     private Case oldCase;
+    private int nbCase;
 
     public void avatarMovement(ImageView imgPerso, MapGeneration map, Play activityGame, List<Bitmap> avatar){
-        System.out.println("Avatar mouvement");
         listeCase = map.getPlayerMap();
         if(listeCase == null){
-            System.out.println("listecase is null");
+            Log.d("listecase", "is null");
         }else{
-            System.out.println("listecase is not null");
-        }
-        Log.d("TAILLE", " : " + listeCase.toArray().length);
-        for(Case i : listeCase){
-            Log.d("MAP", "Coord : " + i.getCoordX() + i.getCoordY());
-        }
-        if(actualCase == null){
-            System.out.println("actualCase null");
-            actualCase = listeCase.get(0);
+            Log.d("TAILLE", " : " + listeCase.toArray().length);
+            for(Case i : listeCase){
+                Log.d("MAP", "Coord : " + i.getCoordX() + " " + i.getCoordY());
+            }
         }
         Map mapCase = map.getMapTile();
-        oldCase = actualCase;
-        actualCase = mapCase.getNextCase(oldCase);
-
-        if(actualCase == null){
-            System.out.println("Case actuelle vide");
-        }else{
-            System.out.println("Case OK");
+        if(actualCase == null && oldCase == null){
+            System.out.println("actualCase null");
+            actualCase = listeCase.get(0);
+            oldCase = listeCase.get(0);
+            nbCase = 0;
+        }else {
+            oldCase = actualCase;
+            actualCase = mapCase.getNextCase(oldCase);
         }
         System.out.println(actualCase);
 
         if(actualCase != null){
-
             Log.d("OldCase", oldCase.getCoordX()+" "+ oldCase.getCoordY());
             Log.d("actualCase", actualCase.getCoordX()+" "+ actualCase.getCoordY());
 
@@ -53,8 +48,12 @@ public class AvatarMovement {
             int y = actualCase.getCoordY();
             System.out.println("x "+x);
             System.out.println("y "+y);
-            imgPerso.setX(x * map.getSizeTile());
-            imgPerso.setY(y * map.getSizeTile());
+            int xMovement = x * map.getSizeTile();
+            int yMovement = y * map.getSizeTile();
+            System.out.println(xMovement);
+            System.out.println(yMovement);
+            imgPerso.setX(xMovement);
+            imgPerso.setY(yMovement);
         }else{
             System.out.println("Fin du jeu");
         }

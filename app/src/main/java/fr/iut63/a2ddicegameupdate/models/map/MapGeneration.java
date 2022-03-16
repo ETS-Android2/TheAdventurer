@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import fr.iut63.a2ddicegameupdate.models.Case;
 
 public class MapGeneration extends Map{
-    private final int[][] coordFirstDifficultyMap = {{1,28},{2,28},{3,28},{4,28},{5,28},{6,28},{6,27},{5,37},{5,36},{5,35}};
+    private final int[][] coordFirstDifficultyMap = {{2,40},{4,40},{6,40},{8,40},{10,40},{10,38},{10,36},{10,34},{10,32},{10,30},{12,30},{14,30},{16,30},{18,30},{18,28},{18,26},{18,24},{18,22},{18,20}};
     private int[][] coordMap = {};
     private Map map;
     /**

@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -18,7 +18,7 @@ import java.util.List;
 
 import fr.iut63.a2ddicegameupdate.R;
 import fr.iut63.a2ddicegameupdate.models.GameDrawer;
-import fr.iut63.a2ddicegameupdate.models.map.Map;
+import fr.iut63.a2ddicegameupdate.models.GameTime;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 import fr.iut63.a2ddicegameupdate.models.player.AvatarMovement;
 
@@ -32,6 +32,7 @@ public class Play extends Activity
     private int width;
     private List<Bitmap> avatar;
     private MapGeneration map;
+    private TextView timeview;
 
 
     @Override
@@ -48,7 +49,10 @@ public class Play extends Activity
         int stage = 1;
         int level = 1;
         constraintLayout = findViewById(R.id.constLayoutGame);
+        timeview = findViewById(R.id.gameView);
 
+        GameTime gameTime = new GameTime(timeview);
+        gameTime.start();
         map = new MapGeneration(width, height, level);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap();
