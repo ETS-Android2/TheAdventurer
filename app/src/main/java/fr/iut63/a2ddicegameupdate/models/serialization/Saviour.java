@@ -1,4 +1,4 @@
-package fr.iut63.a2ddicegameupdate.data;
+package fr.iut63.a2ddicegameupdate.models.serialization;
 
 import java.io.FileOutputStream;
 import java.io.Serializable;

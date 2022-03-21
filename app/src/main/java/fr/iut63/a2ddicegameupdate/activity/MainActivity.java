@@ -4,42 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
 
 import fr.iut63.a2ddicegameupdate.R;
-import fr.iut63.a2ddicegameupdate.data.FileLoader;
-import fr.iut63.a2ddicegameupdate.data.FileSaviour;
-import fr.iut63.a2ddicegameupdate.data.Loader;
-import fr.iut63.a2ddicegameupdate.data.Saviour;
-import fr.iut63.a2ddicegameupdate.data.Stub;
-import fr.iut63.a2ddicegameupdate.models.ListeScore;
-import fr.iut63.a2ddicegameupdate.models.Resultat;
+import fr.iut63.a2ddicegameupdate.models.serialization.FileLoader;
+import fr.iut63.a2ddicegameupdate.models.serialization.FileSaviour;
+import fr.iut63.a2ddicegameupdate.models.serialization.Loader;
+import fr.iut63.a2ddicegameupdate.models.serialization.Saviour;
+import fr.iut63.a2ddicegameupdate.models.serialization.Stub;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String LE_FICHIER_RESULTAT = "test";
-    private ListeScore listeScore;
-    private final Resultat resultats = null;
-    private Saviour leSauveur = new FileSaviour();
-    private Loader leLoader;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -53,16 +34,6 @@ public class MainActivity extends AppCompatActivity {
         buttonScore.setOnClickListener(view -> switchActivities("scoreActivity"));
         buttonPartie.setOnClickListener(view -> switchActivities("gameActivity"));
 
-        leLoader = new FileLoader();
-        try {
-            listeScore = (ListeScore) leLoader.load(openFileInput("test.txt"));
-        } catch (FileNotFoundException e) {
-        }
-
-        if (listeScore == null) {
-            leLoader = new Stub();
-            listeScore = (ListeScore) leLoader.load(null);
-        }
     }
 
     private void switchActivities(String activity) {
@@ -86,18 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        try {
-            leSauveur.save(openFileOutput("test.txt", MODE_PRIVATE), listeScore);
-        } catch (FileNotFoundException e) {
-            Log.e(getPackageName(), "Impossible de sauvegarder la promotion");
-        }
-
         super.onStop();
     }
 
-    public ListeScore getListeScore() {
-        return listeScore;
-    }
 }
 
 

@@ -1,16 +1,10 @@
-package fr.iut63.a2ddicegameupdate.data;
+package fr.iut63.a2ddicegameupdate.models.serialization;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
-import fr.iut63.a2ddicegameupdate.models.Resultat;
 
 public class FileSaviour implements Saviour {
 
@@ -18,7 +12,7 @@ public class FileSaviour implements Saviour {
     public void save(FileOutputStream fichier, Serializable toSave) {
 
         String filename = "text.txt";
-        Resultat m = new Resultat(11, 1, "12/07/2022");
+        ResultSerializable m = new ResultSerializable("ZartaX0O3",7, 15258, 452);
 
         // save the object to file
         FileOutputStream fos = null;
@@ -39,7 +33,7 @@ public class FileSaviour implements Saviour {
         try {
             fis = new FileInputStream(filename);
             in = new ObjectInputStream(fis);
-            m = (Resultat) in.readObject();
+            m = (ResultSerializable) in.readObject();
             in.close();
         } catch (Exception ex) {
             ex.printStackTrace();
