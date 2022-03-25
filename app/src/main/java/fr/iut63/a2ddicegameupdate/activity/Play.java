@@ -18,7 +18,7 @@ import java.util.List;
 
 import fr.iut63.a2ddicegameupdate.R;
 import fr.iut63.a2ddicegameupdate.models.GameDrawer;
-import fr.iut63.a2ddicegameupdate.models.GameTime;
+import fr.iut63.a2ddicegameupdate.models.Loop;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 import fr.iut63.a2ddicegameupdate.models.player.AvatarMovement;
 
@@ -33,6 +33,7 @@ public class Play extends Activity
     private List<Bitmap> avatar;
     private MapGeneration map;
     private TextView timeview;
+    private Loop loop = new Loop();
 
 
     @Override
@@ -49,20 +50,36 @@ public class Play extends Activity
         int stage = 1;
         int level = 1;
         constraintLayout = findViewById(R.id.constLayoutGame);
-        timeview = findViewById(R.id.gameView);
 
-        GameTime gameTime = new GameTime(timeview);
-        gameTime.start();
+        timeview = findViewById(R.id.gameView);
+        timeview.setText("00:00");
+        startLoop();
+
         map = new MapGeneration(width, height, level);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap();
         ImageView imgPerso = gameDrawer.drawPlayer();
         AvatarMovement avatarMovement = new AvatarMovement();
+
         Button button_roll_dice = findViewById(R.id.button_roll_dice);
-        button_roll_dice.setOnClickListener(view -> avatarMovement.avatarMovement(imgPerso, map, this, avatar));
-//        button_roll_dice.setOnClickListener(view -> Log.d("LanceDe", "Dé lancé"));
+
+        button_roll_dice.setOnClickListener(view -> avatarMovement.avatarMovement(imgPerso, map, loop, this));
 
 
+
+
+
+    }
+
+    public void endGame()
+    {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+    public void startLoop() {
+        loop.setRunning(true);
+        Thread boucleThread = new Thread(loop);
+        boucleThread.start();
     }
 
     @Override
