@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -98,11 +99,22 @@ public class GameDrawer {
                     tileIMG.setY(i * map.getTileLengthY());
 
                     activityGame.getConstraintLayout().addView(tileIMG);
+
                     return tileIMG;
                 }
             }
         }
         return null;
+    }
+
+    public TextView drawTimer() {
+        TextView tw = new TextView(activityGame);
+        tw.setText("0");
+        tw.setY(40);
+        tw.setX(40);
+
+        activityGame.getConstraintLayout().addView(tw);
+        return tw;
     }
     public List<Bitmap> getAvatar(){
         return avatar;

@@ -59,16 +59,13 @@ public class Play extends Activity
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap();
         ImageView imgPerso = gameDrawer.drawPlayer();
+        TextView timer = gameDrawer.drawTimer();
+
         AvatarMovement avatarMovement = new AvatarMovement();
 
         Button button_roll_dice = findViewById(R.id.button_roll_dice);
 
         button_roll_dice.setOnClickListener(view -> avatarMovement.avatarMovement(imgPerso, map, loop, this));
-
-
-
-
-
     }
 
     public void endGame()
@@ -98,7 +95,7 @@ public class Play extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        Intent i = null;
+        Intent i;
 
         switch (item.getItemId())
         {
