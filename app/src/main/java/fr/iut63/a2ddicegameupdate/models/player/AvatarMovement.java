@@ -34,8 +34,8 @@ public class AvatarMovement {
             if(actualCase != null){
                 int x = actualCase.getCoordX();
                 int y = actualCase.getCoordY();
-                int xMovement = x * 58;
-                int yMovement = y * 53;
+                int xMovement = x * map.getTileLengthX();
+                int yMovement = y * map.getTileLengthY();
                 imgPerso.setX(xMovement);
                 imgPerso.setY(yMovement);
                 if(actualCase.isEnd()){

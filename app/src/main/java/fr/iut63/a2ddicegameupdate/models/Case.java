@@ -11,7 +11,7 @@ public class Case {
     boolean isEnd;
     boolean isMalus;
     boolean isBonus;
-    int sizeTile;
+    int sizeTileWidth, sizeTileHeight;
 
     /**
      * Constructor of the Case class
@@ -25,7 +25,8 @@ public class Case {
      * @param map
      */
     public Case(int idCase, int coordX, int coordY, boolean isStart, boolean isBonus, boolean isMalus, boolean isEnd, Map map) {
-        this.sizeTile = map.getSizeTile();
+        this.sizeTileWidth = map.getSizeTileWidth();
+        this.sizeTileHeight = map.getSizeTileHeight();
         this.idCase = idCase;
         this.coordX = coordX;
         this.coordY = coordY;
@@ -131,7 +132,8 @@ public class Case {
         isEnd = end;
     }
 
-    public int getSizeTile(){
-        return this.sizeTile;
+    public int getSizeTileWidth(){
+        return this.sizeTileWidth;
     }
+    public int getSizeTileHeight() { return this.sizeTileHeight; }
 }

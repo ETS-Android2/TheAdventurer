@@ -6,7 +6,8 @@ import fr.iut63.a2ddicegameupdate.models.Case;
 
 
 public class Map {
-    private final int sizeTile;
+    private final int sizeTileWidth;
+    private final int sizeTileHeight;
     private int coordStartX;
     private int coordStartY;
     private ArrayList<Case> map;
@@ -36,7 +37,9 @@ public class Map {
         offsetXFlag = offsetX != 0;
 
         offsetYFlag = offsetY != 0;
-        this.sizeTile = 32;
+
+        this.sizeTileWidth = resolutionWidth / 42;
+        this.sizeTileHeight = resolutionHeight / 42;
     }
 
 
@@ -44,8 +47,12 @@ public class Map {
      * Method to get the size of the tile
      * @return sizeTile
      */
-    public int getSizeTile() {
-        return this.sizeTile;
+    public int getSizeTileWidth() {
+        return this.sizeTileWidth;
+    }
+
+    public int getSizeTileHeight() {
+        return sizeTileHeight;
     }
 
     /**

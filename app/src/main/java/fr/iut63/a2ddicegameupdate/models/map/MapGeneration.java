@@ -1,5 +1,7 @@
 package fr.iut63.a2ddicegameupdate.models.map;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import fr.iut63.a2ddicegameupdate.models.Case;
