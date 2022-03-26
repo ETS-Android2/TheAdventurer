@@ -8,7 +8,9 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,8 +39,7 @@ public class Play extends Activity
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.game_panel);
@@ -50,8 +51,6 @@ public class Play extends Activity
         int difficulty = 1;
         int avatar = 1;
 
-
-        //récuperer les données de l'intent
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
@@ -60,27 +59,63 @@ public class Play extends Activity
         }
         constraintLayout = findViewById(R.id.constLayoutGame);
 
-        //TextView timer = gameDrawer.drawTimer();
-
         startLoop();
 
         map = new MapGeneration(width, height, difficulty);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap(difficulty);
         ImageView imgPerso = gameDrawer.drawPlayer(avatar);
-
         AvatarMovement avatarMovement = new AvatarMovement();
-
         Button button_roll_dice = findViewById(R.id.button_roll_dice);
+        Play play = this;
 
-        button_roll_dice.setOnClickListener(view -> avatarMovement.avatarMovement(imgPerso, map, loop, this));
+        button_roll_dice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button_roll_dice.setClickable(false);
+                avatarMovement.avatarMovement(imgPerso, map, loop, play);
+                button_roll_dice.setClickable(true);
+            }
+        });
     }
 
-    public void endGame()
-    {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+    public void endGame(){
+        Button button_roll_dice = findViewById(R.id.button_roll_dice);
+        button_roll_dice.setEnabled(false);
+
+        TextView textView = new TextView(this);
+        textView.setText(R.string.end_game);
+        textView.setTextSize(40);
+        textView.setTextColor(getResources().getColor(R.color.black));
+        textView.setX((int) Math.ceil(width / 2) - (width / 7));
+        textView.setY((int) Math.ceil(height / 4));
+        constraintLayout.addView(textView);
+
+        EditText editText = new EditText(this);
+        editText.setHint(R.string.enter_name);
+        editText.setTextSize(20);
+        editText.setTextColor(getResources().getColor(R.color.black));
+        editText.setX((int) Math.ceil(width / 2) - (width / 7));
+        editText.setY((int) Math.ceil(height / 2));
+        constraintLayout.addView(editText);
+
+        Button button = new Button(this);
+        button.setText(R.string.menu);
+        button.setTextSize(40);
+        button.setTextColor(getResources().getColor(R.color.black));
+        button.setX((int) Math.ceil(width / 2) - (width / 10));
+        button.setY((int) Math.ceil(height / 4) + (width / 4));
+
+        constraintLayout.addView(button);
+
+        button.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
     }
+
+
+
     public void startLoop() {
         loop = new Loop();
         loop.setRunning(true);
