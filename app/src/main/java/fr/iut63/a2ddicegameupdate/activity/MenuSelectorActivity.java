@@ -3,6 +3,7 @@ package fr.iut63.a2ddicegameupdate.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 
@@ -38,6 +39,7 @@ public class MenuSelectorActivity extends Activity {
     void nextMenu(){
         Intent i = new Intent(this, AvatarSelectorActivity.class);
         i.putExtra("difficulty", difficulty);
+        Log.d("difficulty", String.valueOf(difficulty));
         startActivity(i);
     }
 }

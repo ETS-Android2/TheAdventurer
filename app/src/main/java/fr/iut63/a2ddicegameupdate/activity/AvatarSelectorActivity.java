@@ -11,7 +11,7 @@ import fr.iut63.a2ddicegameupdate.R;
 
 public class AvatarSelectorActivity extends Activity {
 
-    public static int avatar;
+    public static int avatar = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

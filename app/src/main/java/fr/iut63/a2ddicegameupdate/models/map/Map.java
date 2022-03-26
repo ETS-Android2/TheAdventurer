@@ -21,6 +21,10 @@ public class Map {
     private final boolean offsetYFlag;
     private int[][] mapFirstLayout;
     private int[][] mapSecondLayout;
+    private int[][] mapThirdLayout;
+    private int[][] mapFirstLayout2;
+    private int[][] mapSecondLayout2;
+    private int[][] mapThirdLayout2;
 
     /**
      * Constructor of the Map class
@@ -177,6 +181,40 @@ public class Map {
     public void setMapSecondLayout(int[][] mapSecondLayout) {
         this.mapSecondLayout = mapSecondLayout;
     }
+
+    public int[][] getMapThirdLayout() {
+        return mapThirdLayout;
+    }
+
+    public void setMapThirdLayout(int[][] mapThirdLayout) {
+        this.mapThirdLayout = mapThirdLayout;
+    }
+
+    public int[][] getMapFirstLayout2() {
+        return mapFirstLayout2;
+    }
+
+    public void setMapFirstLayout2(int[][] mapFirstLayout2) {
+        this.mapFirstLayout2 = mapFirstLayout2;
+    }
+
+    public int[][] getMapSecondLayout2() {
+        return mapSecondLayout2;
+    }
+
+    public void setMapSecondLayout2(int[][] mapSecondLayout2) {
+        this.mapSecondLayout2 = mapSecondLayout2;
+    }
+
+    public int[][] getMapThirdLayout2() {
+        return mapThirdLayout2;
+    }
+
+    public void setMapThirdLayout2(int[][] mapThirdLayout2) {
+        this.mapThirdLayout2 = mapThirdLayout2;
+    }
+
+
 
     public void setMapTile(int xCord , int yCord , int updatedValue){
         this.mapFirstLayout[yCord][xCord] = updatedValue;

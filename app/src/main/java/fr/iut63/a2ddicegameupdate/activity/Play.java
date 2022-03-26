@@ -33,7 +33,7 @@ public class Play extends Activity
     private List<Bitmap> avatar;
     private MapGeneration map;
     private TextView timeview;
-    private Loop loop = new Loop();
+    private Loop loop;
 
 
     @Override
@@ -47,19 +47,27 @@ public class Play extends Activity
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-        int stage = 1;
-        int level = 1;
+        int difficulty = 1;
+        int avatar = 1;
+
+
+        //récuperer les données de l'intent
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            difficulty = extras.getInt("difficulty");
+            avatar = extras.getInt("avatar");
+        }
         constraintLayout = findViewById(R.id.constLayoutGame);
 
-        timeview = findViewById(R.id.gameView);
-        timeview.setText("00:00");
+        //TextView timer = gameDrawer.drawTimer();
+
         startLoop();
 
-        map = new MapGeneration(width, height, level);
+        map = new MapGeneration(width, height, difficulty);
         gameDrawer = new GameDrawer(this, map);
-        gameDrawer.drawMap();
-        ImageView imgPerso = gameDrawer.drawPlayer();
-        TextView timer = gameDrawer.drawTimer();
+        gameDrawer.drawMap(difficulty);
+        ImageView imgPerso = gameDrawer.drawPlayer(avatar);
 
         AvatarMovement avatarMovement = new AvatarMovement();
 
@@ -74,6 +82,7 @@ public class Play extends Activity
         startActivity(i);
     }
     public void startLoop() {
+        loop = new Loop();
         loop.setRunning(true);
         Thread boucleThread = new Thread(loop);
         boucleThread.start();
@@ -91,6 +100,13 @@ public class Play extends Activity
 //        }
         return true;
     }
+
+    /*@Override
+    public void update(int timer) {
+        if (loop.isRunning()) {
+            Updater.updateTimerSeconds(timer, Loop.getDefaultMillis(), game);
+        }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)

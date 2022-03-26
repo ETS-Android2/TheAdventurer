@@ -18,35 +18,45 @@ public class AvatarMovement {
     public void avatarMovement(ImageView imgPerso, MapGeneration map, Loop loop, Play play){
         ArrayList<Case> listeCase = map.getPlayerMap();
         Map mapCase = map.getMapTile();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int random = (int) ((Math.random() * 6)+1);
+                Log.d("random", String.valueOf(random));
+                for (int i = 0; i<random; i++){
+                    if(actualCase == null && oldCase == null){
+                        actualCase = listeCase.get(0);
+                        oldCase = listeCase.get(0);
+                    }else {
+                        oldCase = actualCase;
+                        actualCase = mapCase.getNextCase(oldCase);
+                    }
 
-        //tirer un nombre aléatoire entre 0 et 6
-        int random = (int) (Math.random() * 6);
-        Log.d("random", String.valueOf(random));
-        for (int i = 0; i<random; i++){
-            if(actualCase == null && oldCase == null){
-                actualCase = listeCase.get(0);
-                oldCase = listeCase.get(0);
-            }else {
-                oldCase = actualCase;
-                actualCase = mapCase.getNextCase(oldCase);
-            }
+                    if(actualCase != null){
+                        int x = actualCase.getCoordX();
+                        int y = actualCase.getCoordY();
+                        int xMovement = x * map.getTileLengthX();
+                        int yMovement = y * map.getTileLengthY();
+                        imgPerso.setX(xMovement);
+                        imgPerso.setY(yMovement);
+                        if(actualCase.isEnd()){
+                            Log.d("End", "End");
+                            loop.setRunning(false);
+                            play.endGame();
+                        }
+                    }
+                    try {
+                        Thread.sleep(100);
 
-            if(actualCase != null){
-                int x = actualCase.getCoordX();
-                int y = actualCase.getCoordY();
-                int xMovement = x * map.getTileLengthX();
-                int yMovement = y * map.getTileLengthY();
-                imgPerso.setX(xMovement);
-                imgPerso.setY(yMovement);
-                if(actualCase.isEnd()){
-                    Log.d("End", "End");
-                    //gameTime.setEndGame(true);
-                    //gameTime.stop();
-                    loop.setRunning(false);
-                    play.endGame();
+                    }
+                    catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-        }
+        } );
+        thread.start();
+
 
     }
 }
