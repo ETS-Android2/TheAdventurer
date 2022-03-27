@@ -19,7 +19,7 @@ public class ScoresActivity extends Activity {
         setContentView(R.layout.menu_selector);
 
         PersistenceManager pb = new PersistenceManagerBinary();
-        ScoreRankSerializable scoreList = pb.load(this);
+        ScoreRankSerializable scoreList = new ScoreRankSerializable(); //pb.load(this);
         String score = "Top Scores : \n \n \n";
 
         for(ResultSerializable re : scoreList.getRank()){

@@ -51,9 +51,9 @@ public class PersistenceManagerBinary extends PersistenceManager {
                 String receiveString = "";
                 StringBuilder stringBuilder = new StringBuilder();
 
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                while ((receiveString = bufferedReader.readLine()) != null ) {
                     stringBuilder.append(receiveString);
-                    String list[] = receiveString.split(" ");
+                    String[] list = receiveString.split(" ");
                     int score = Integer.parseInt(list[1]);
                     int level = Integer.parseInt(list[2]);
                     int timer = Integer.parseInt(list[3]);
