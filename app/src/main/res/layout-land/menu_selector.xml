@@ -23,14 +23,30 @@
 
     <TextView
         android:id="@+id/textViewScore"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="733dp"
+        android:layout_height="359dp"
+        android:layout_marginTop="48dp"
         android:gravity="center_horizontal"
         android:text="Crash error"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="24sp"
-        tools:layout_editor_absoluteY="60dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-1dp" />
+
+    <TextView
+        android:id="@+id/enteteView"
+        android:layout_width="466dp"
+        android:layout_height="33dp"
+        android:gravity="center_horizontal"
+        android:text="@string/score_entete"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewScore"
+        app:layout_constraintVertical_bias="0.193" />
 
     <!--
     <androidx.fragment.app.FragmentContainerView

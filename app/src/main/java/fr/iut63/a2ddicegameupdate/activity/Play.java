@@ -85,7 +85,19 @@ public class Play extends Activity
                 button_roll_dice.setClickable(false);
                 avatarMovement.avatarMovement(imgPerso, map, loop, play);
                 endGame();
-                button_roll_dice.setClickable(true);
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        button_roll_dice.setClickable(true);
+                    }
+                });
+                thread.start();
+
             }
         });
 
@@ -142,7 +154,7 @@ public class Play extends Activity
                 Collections.sort(list, new Comparator<ResultSerializable>() {
                     @Override
                     public int compare(ResultSerializable p1, ResultSerializable p2) {
-                        return p1.getScore() - p2.getScore();
+                        return p1.getScore() + p2.getScore();
                     }
                 });
                 score.setRank(list);

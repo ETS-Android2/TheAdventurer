@@ -31,4 +31,5 @@
     <string name="menu">Menu</string>
     <string name="enter_name">Entrer votre nom</string>
     <string name="score">Score :</string>
+    <string name="score_entete">Nom Level Score Timer</string>
 </resources>
