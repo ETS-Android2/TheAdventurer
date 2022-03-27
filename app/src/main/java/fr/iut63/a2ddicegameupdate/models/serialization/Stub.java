@@ -1,11 +1,13 @@
 package fr.iut63.a2ddicegameupdate.models.serialization;
 
+import android.app.Activity;
+
 import fr.iut63.a2ddicegameupdate.activity.ScoresActivity;
 
 public class Stub implements ILoadStates {
 
     @Override
-    public ScoreRankSerializable load(ScoresActivity context) {
+    public ScoreRankSerializable load(Activity context) {
 
         ScoreRankSerializable scoreRank = new ScoreRankSerializable();
         scoreRank.addResult(new ResultSerializable("ZartaX0O3", 3, 12543, 156));

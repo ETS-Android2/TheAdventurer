@@ -6,10 +6,14 @@ import java.util.List;
 
 public class ScoreRankSerializable implements Serializable {
 
-    private final List<ResultSerializable> rank = new ArrayList<>();
+    private List<ResultSerializable> rank = new ArrayList<>();
 
     public List<ResultSerializable> getRank(){
         return rank;
+    }
+
+    public void setRank(List<ResultSerializable> list){
+        this.rank = list;
     }
 
     public void addResult(ResultSerializable result){

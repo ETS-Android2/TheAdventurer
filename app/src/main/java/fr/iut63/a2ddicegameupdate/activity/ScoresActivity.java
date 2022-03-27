@@ -19,11 +19,15 @@ public class ScoresActivity extends Activity {
         setContentView(R.layout.menu_selector);
 
         PersistenceManager pb = new PersistenceManagerBinary();
-        ScoreRankSerializable scoreList = new ScoreRankSerializable(); //pb.load(this);
+        ScoreRankSerializable scoreList = pb.load(this);
         String score = "Top Scores : \n \n \n";
 
+        int i = 0;
+
         for(ResultSerializable re : scoreList.getRank()){
+            if(i == 10) break;
             score += re.getPseudo() + " " + re.getLevel() + " " + re.getScore() + " " + re.getTime() + "\n";
+            i++;
         }
 
         TextView Textview = findViewById(R.id.textViewScore);

@@ -7,8 +7,8 @@ public class Loop extends LoopListener implements Runnable {
     private long millis = 50;
     private long time;
 
-    public long getTime() {
-        return time;
+    public int getTime() {
+        return (int) time;
     }
 
     private boolean running = false;

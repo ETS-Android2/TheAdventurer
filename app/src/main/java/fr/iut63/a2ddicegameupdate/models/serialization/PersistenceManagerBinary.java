@@ -1,5 +1,6 @@
 package fr.iut63.a2ddicegameupdate.models.serialization;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -24,7 +25,7 @@ public class PersistenceManagerBinary extends PersistenceManager {
     private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/saveScores.ser");
 
     @Override
-    public void save(ScoreRankSerializable scoreRanking, ScoresActivity context) {
+    public void save(ScoreRankSerializable scoreRanking, Activity context) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
             for(ResultSerializable re : scoreRanking.getRank()){
@@ -38,7 +39,7 @@ public class PersistenceManagerBinary extends PersistenceManager {
     }
 
     @Override
-    public ScoreRankSerializable load(ScoresActivity context) {
+    public ScoreRankSerializable load(Activity context) {
 
         String ret = "";
         ScoreRankSerializable scoreList = new ScoreRankSerializable();

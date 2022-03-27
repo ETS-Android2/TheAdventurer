@@ -20,6 +20,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import fr.iut63.a2ddicegameupdate.R;
@@ -28,6 +31,10 @@ import fr.iut63.a2ddicegameupdate.models.game.GameState;
 import fr.iut63.a2ddicegameupdate.models.loop.Loop;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 import fr.iut63.a2ddicegameupdate.models.player.AvatarMovement;
+import fr.iut63.a2ddicegameupdate.models.serialization.PersistenceManagerBinary;
+import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializable;
+import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializableComparator;
+import fr.iut63.a2ddicegameupdate.models.serialization.ScoreRankSerializable;
 
 public class Play extends Activity
 {
@@ -39,6 +46,8 @@ public class Play extends Activity
     private GameState game;
     private Loop loop = new Loop();
     private Button button_roll_dice;
+    private Button updater_timer;
+    private int difficulty;
 
     private List<Bitmap> avatar;
     private MapGeneration map;
@@ -50,11 +59,12 @@ public class Play extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_panel);
         button_roll_dice = findViewById(R.id.button_roll_dice);
+        updater_timer = findViewById(R.id.button_update_timer);
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-        int difficulty = 1;
+        difficulty = 1;
         int avatar = 1;
 
         Bundle extras = getIntent().getExtras();
@@ -86,6 +96,14 @@ public class Play extends Activity
                 button_roll_dice.setClickable(true);
             }
         });
+
+        updater_timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updater_timer.setText("Time : " + loop.getTime());
+            }
+        });
+
     }
 
     public void endGame(){
@@ -124,8 +142,21 @@ public class Play extends Activity
             constraintLayout.addView(button);
 
             button.setOnClickListener(view -> {
+                ResultSerializable re = new ResultSerializable(String.valueOf(editText.getText()), difficulty, 15000-(difficulty*loop.getTime()), loop.getTime());
+                PersistenceManagerBinary pers = new PersistenceManagerBinary();
+                ScoreRankSerializable score = pers.load(this);
+                score.addResult(re);
+                List<ResultSerializable> list = score.getRank();
+                Collections.sort(list, new Comparator<ResultSerializable>() {
+                    @Override
+                    public int compare(ResultSerializable p1, ResultSerializable p2) {
+                        return p1.getScore() - p2.getScore();
+                    }
+                });
+                score.setRank(list);
+                pers.save(score, this);
                 Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
             });
         }
 
