@@ -38,7 +38,7 @@ public class Play extends Activity
     private GameDrawer gameDrawer;
     private GameState game;
     private Loop loop = new Loop();
-    private Button button_roll_dice = findViewById(R.id.button_roll_dice);
+    private Button button_roll_dice;
 
     private List<Bitmap> avatar;
     private MapGeneration map;
@@ -49,7 +49,7 @@ public class Play extends Activity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_panel);
-
+        button_roll_dice = findViewById(R.id.button_roll_dice);
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
@@ -71,7 +71,6 @@ public class Play extends Activity
         game = new GameState();
 
         startLoop();
-
         imgPerso = gameDrawer.drawPlayer(avatar);
 
         AvatarMovement avatarMovement = new AvatarMovement();
@@ -83,48 +82,53 @@ public class Play extends Activity
             public void onClick(View v) {
                 button_roll_dice.setClickable(false);
                 avatarMovement.avatarMovement(imgPerso, map, loop, play);
+                endGame();
                 button_roll_dice.setClickable(true);
             }
         });
     }
 
     public void endGame(){
-        Button button_update_timer = findViewById(R.id.button_update_timer);
-        button_update_timer.setOnClickListener(view -> {
-            button_update_timer.setText("Time : " + loop.getTime());
-        });
+        Log.d("endGame", loop.isRunning() + "");
+        if (!loop.isRunning()) {
+            Button button_update_timer = findViewById(R.id.button_update_timer);
+            button_update_timer.setOnClickListener(view -> {
+                button_update_timer.setText("Time : " + loop.getTime());
+            });
 
-        button_roll_dice.setEnabled(false);
+            button_roll_dice.setEnabled(false);
 
-        TextView textView = new TextView(this);
-        textView.setText(R.string.end_game);
-        textView.setTextSize(40);
-        textView.setTextColor(getResources().getColor(R.color.black));
-        textView.setX((int) Math.ceil(width / 2) - (width / 7));
-        textView.setY((int) Math.ceil(height / 4));
-        constraintLayout.addView(textView);
+            TextView textView = new TextView(this);
+            textView.setText(R.string.end_game);
+            textView.setTextSize(40);
+            textView.setTextColor(getResources().getColor(R.color.black));
+            textView.setX((int) Math.ceil(width / 2) - (width / 7));
+            textView.setY((int) Math.ceil(height / 4));
+            constraintLayout.addView(textView);
 
-        EditText editText = new EditText(this);
-        editText.setHint(R.string.enter_name);
-        editText.setTextSize(20);
-        editText.setTextColor(getResources().getColor(R.color.black));
-        editText.setX((int) Math.ceil(width / 2) - (width / 7));
-        editText.setY((int) Math.ceil(height / 2));
-        constraintLayout.addView(editText);
+            EditText editText = new EditText(this);
+            editText.setHint(R.string.enter_name);
+            editText.setTextSize(20);
+            editText.setTextColor(getResources().getColor(R.color.black));
+            editText.setX((int) Math.ceil(width / 2) - (width / 7));
+            editText.setY((int) Math.ceil(height / 2));
+            constraintLayout.addView(editText);
 
-        Button button = new Button(this);
-        button.setText(R.string.menu);
-        button.setTextSize(40);
-        button.setTextColor(getResources().getColor(R.color.black));
-        button.setX((int) Math.ceil(width / 2) - (width / 10));
-        button.setY((int) Math.ceil(height / 4) + (width / 4));
+            Button button = new Button(this);
+            button.setText(R.string.menu);
+            button.setTextSize(40);
+            button.setTextColor(getResources().getColor(R.color.black));
+            button.setX((int) Math.ceil(width / 2) - (width / 10));
+            button.setY((int) Math.ceil(height / 4) + (width / 4));
 
-        constraintLayout.addView(button);
+            constraintLayout.addView(button);
 
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+            button.setOnClickListener(view -> {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            });
+        }
+
     }
 
 

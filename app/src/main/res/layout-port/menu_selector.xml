@@ -9,22 +9,33 @@
 
     <Button
         android:id="@+id/buttonRetour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="76dp"
+        android:layout_height="56dp"
         android:gravity="center"
         android:text="@string/Retour_Menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewScore"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:text=""
-        android:textSize="24sp"
-        android:textColor="#000"
         android:textAlignment="center"
-        android:layout_marginTop="60dp"
-        android:gravity="center_horizontal" />
+        android:textColor="#000"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteY="60dp" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView3"
+        android:name="fr.iut63.a2ddicegameupdate.fragment.BlockFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewScore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

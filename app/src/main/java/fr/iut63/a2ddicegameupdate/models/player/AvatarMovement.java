@@ -44,8 +44,9 @@ public class AvatarMovement {
                         int yMovement = y * map.getTileLengthY();
                         imgPerso.setX(xMovement);
                         imgPerso.setY(yMovement);
-                        if(mapCase.getNextCase(oldCase).isEnd() || actualCase.isEnd()){
-                            isEnd = true;
+                        if(actualCase.isEnd()){
+                            //isEnd = true;
+                            loop.setRunning(false);
                             Log.d("IsEnd", "Ok");
                             break;
                         }
@@ -65,13 +66,13 @@ public class AvatarMovement {
         } );
         thread.start();
         Log.d("isEnd", String.valueOf(isEnd));
-        if(isEnd){
+        /*if(isEnd){
             setIsEnd();
-        }
+        }*/
     }
-    public void setIsEnd(){
+    /*public void setIsEnd(){
         play.endGame();
         Log.d("End", "End");
         loop.setRunning(false);
-    }
+    }*/
 }
