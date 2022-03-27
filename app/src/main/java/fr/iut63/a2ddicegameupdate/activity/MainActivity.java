@@ -4,23 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 import fr.iut63.a2ddicegameupdate.R;
-import fr.iut63.a2ddicegameupdate.models.serialization.FileLoader;
-import fr.iut63.a2ddicegameupdate.models.serialization.FileSaviour;
-import fr.iut63.a2ddicegameupdate.models.serialization.Loader;
-import fr.iut63.a2ddicegameupdate.models.serialization.Saviour;
-import fr.iut63.a2ddicegameupdate.models.serialization.Stub;
+import fr.iut63.a2ddicegameupdate.models.serialization.PersistenceManagerBinary;
+import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializable;
+import fr.iut63.a2ddicegameupdate.models.serialization.ScoreRankSerializable;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String LE_FICHIER_RESULTAT = "test";
+    private static final File fileSerialization = new File(System.getProperty("user.dir") + "assets/files/test.txt");
 
     @SuppressLint("LongLogTag")
     @Override
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         buttonScore.setOnClickListener(view -> switchActivities("scoreActivity"));
         buttonPartie.setOnClickListener(view -> switchActivities("gameActivity"));
-
     }
 
     private void switchActivities(String activity) {
@@ -53,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    private void writeToFile(String data, Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("config.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(data);
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
     }
 
     @Override

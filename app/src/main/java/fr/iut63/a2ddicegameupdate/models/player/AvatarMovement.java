@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import fr.iut63.a2ddicegameupdate.activity.Play;
 import fr.iut63.a2ddicegameupdate.models.Case;
-import fr.iut63.a2ddicegameupdate.models.Loop;
+import fr.iut63.a2ddicegameupdate.models.loop.Loop;
 import fr.iut63.a2ddicegameupdate.models.map.Map;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 

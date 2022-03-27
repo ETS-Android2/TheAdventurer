@@ -3,8 +3,10 @@ package fr.iut63.a2ddicegameupdate.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,32 +18,36 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 import fr.iut63.a2ddicegameupdate.R;
-import fr.iut63.a2ddicegameupdate.models.GameDrawer;
-import fr.iut63.a2ddicegameupdate.models.Loop;
+import fr.iut63.a2ddicegameupdate.models.game.GameDrawer;
+import fr.iut63.a2ddicegameupdate.models.game.GameState;
+import fr.iut63.a2ddicegameupdate.models.loop.Loop;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 import fr.iut63.a2ddicegameupdate.models.player.AvatarMovement;
 
 public class Play extends Activity
 {
     private final DisplayMetrics displayMetrics = new DisplayMetrics();
-    private GameDrawer gameDrawer;
     private ConstraintLayout constraintLayout;
+    private int height, width;
 
-    private int height;
-    private int width;
+    private GameDrawer gameDrawer;
+    private GameState game;
+    private Loop loop = new Loop();
+    private Button button_roll_dice = findViewById(R.id.button_roll_dice);
+
     private List<Bitmap> avatar;
     private MapGeneration map;
-    private TextView timeview;
-    private Loop loop;
 
+    private ImageView imgPerso;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.game_panel);
 
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -59,14 +65,17 @@ public class Play extends Activity
         }
         constraintLayout = findViewById(R.id.constLayoutGame);
 
-        startLoop();
-
         map = new MapGeneration(width, height, difficulty);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap(difficulty);
-        ImageView imgPerso = gameDrawer.drawPlayer(avatar);
+        game = new GameState();
+
+        startLoop();
+
+        imgPerso = gameDrawer.drawPlayer(avatar);
+
         AvatarMovement avatarMovement = new AvatarMovement();
-        Button button_roll_dice = findViewById(R.id.button_roll_dice);
+
         Play play = this;
 
         button_roll_dice.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +89,11 @@ public class Play extends Activity
     }
 
     public void endGame(){
-        Button button_roll_dice = findViewById(R.id.button_roll_dice);
+        Button button_update_timer = findViewById(R.id.button_update_timer);
+        button_update_timer.setOnClickListener(view -> {
+            button_update_timer.setText("Time : " + loop.getTime());
+        });
+
         button_roll_dice.setEnabled(false);
 
         TextView textView = new TextView(this);
@@ -129,19 +142,8 @@ public class Play extends Activity
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-//        if (listeScore == null) {
-//            leLoader = new Stub();
-//            listeScore = (ListeScore) leLoader.load(null);
-//        }
         return true;
     }
-
-    /*@Override
-    public void update(int timer) {
-        if (loop.isRunning()) {
-            Updater.updateTimerSeconds(timer, Loop.getDefaultMillis(), game);
-        }
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -162,15 +164,10 @@ public class Play extends Activity
         return false;
     }
 
-    /**
-     * Invoked when the Activity loses user focus.
-     */
     @Override
     protected void onPause()
     {
         super.onPause();
-
-        //mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
     }
 
     @Override
@@ -186,4 +183,5 @@ public class Play extends Activity
     public ConstraintLayout getConstraintLayout() {
         return constraintLayout;
     }
+
 }

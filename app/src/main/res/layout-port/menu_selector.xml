@@ -16,4 +16,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=""
+        android:textSize="24sp"
+        android:textColor="#000"
+        android:textAlignment="center"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

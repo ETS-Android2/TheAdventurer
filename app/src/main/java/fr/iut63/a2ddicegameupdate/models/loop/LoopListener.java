@@ -1,4 +1,4 @@
-package fr.iut63.a2ddicegameupdate.models;
+package fr.iut63.a2ddicegameupdate.models.loop;
 
 import java.util.LinkedList;
 

@@ -39,12 +39,10 @@ public class MapGeneration extends Map{
         int j = 1, k;
         if(difficulty==1){
             coordMap = coordFirstDifficultyMap;
-        }else{
-            if (difficulty==2){
+        }else if (difficulty==2){
                 coordMap = coordSecondDifficultyMap;
-            }else{
-                coordMap = coordThirdDifficultyMap;
-            }
+        }else{
+            coordMap = coordThirdDifficultyMap;
         }
         for(int[] i : coordMap){
             boolean boolStart = j == 1;
