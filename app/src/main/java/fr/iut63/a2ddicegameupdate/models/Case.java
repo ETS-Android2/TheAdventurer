@@ -4,14 +4,14 @@ package fr.iut63.a2ddicegameupdate.models;
 import fr.iut63.a2ddicegameupdate.models.map.Map;
 
 public class Case {
-    int idCase;
-    int coordX;
-    int coordY;
-    boolean isStart;
-    boolean isEnd;
-    boolean isMalus;
-    boolean isBonus;
-    int sizeTileWidth, sizeTileHeight;
+    private int idCase;
+    private int coordX;
+    private int coordY;
+    private boolean isStart;
+    private boolean isEnd;
+    private boolean isMalus;
+    private boolean isBonus;
+    private int sizeTileWidth, sizeTileHeight;
 
     /**
      * Constructor of the Case class

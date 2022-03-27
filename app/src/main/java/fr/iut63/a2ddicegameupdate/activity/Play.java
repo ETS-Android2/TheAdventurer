@@ -2,8 +2,6 @@ package fr.iut63.a2ddicegameupdate.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -18,9 +16,6 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -33,7 +28,6 @@ import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 import fr.iut63.a2ddicegameupdate.models.player.AvatarMovement;
 import fr.iut63.a2ddicegameupdate.models.serialization.PersistenceManagerBinary;
 import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializable;
-import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializableComparator;
 import fr.iut63.a2ddicegameupdate.models.serialization.ScoreRankSerializable;
 
 public class Play extends Activity
@@ -43,13 +37,11 @@ public class Play extends Activity
     private int height, width;
 
     private GameDrawer gameDrawer;
-    private GameState game;
     private Loop loop = new Loop();
     private Button button_roll_dice;
     private Button updater_timer;
     private int difficulty;
 
-    private List<Bitmap> avatar;
     private MapGeneration map;
 
     private ImageView imgPerso;
@@ -78,7 +70,7 @@ public class Play extends Activity
         map = new MapGeneration(width, height, difficulty);
         gameDrawer = new GameDrawer(this, map);
         gameDrawer.drawMap(difficulty);
-        game = new GameState();
+        GameState game = new GameState();
 
         startLoop();
         imgPerso = gameDrawer.drawPlayer(avatar);
@@ -155,14 +147,11 @@ public class Play extends Activity
                 });
                 score.setRank(list);
                 pers.save(score, this);
-                Intent intent = new Intent(this, MainActivity.class);
                 finish();
             });
         }
 
     }
-
-
 
     public void startLoop() {
         loop = new Loop();

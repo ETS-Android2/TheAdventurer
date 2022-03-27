@@ -9,6 +9,9 @@ import android.widget.RadioButton;
 
 import fr.iut63.a2ddicegameupdate.R;
 
+/**
+ * Activité de séléction du personnage
+ */
 public class AvatarSelectorActivity extends Activity {
 
     public static int avatar = 1;

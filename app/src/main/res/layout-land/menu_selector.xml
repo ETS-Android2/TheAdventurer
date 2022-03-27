@@ -21,6 +21,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="Crash error"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteY="60dp" />
+
+    <!--
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="fr.iut63.a2ddicegameupdate.fragment.BlockFragment"
@@ -32,5 +44,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.431"
         tools:layout="@layout/fragment" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
