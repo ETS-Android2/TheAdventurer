@@ -12,6 +12,9 @@ import fr.iut63.a2ddicegameupdate.models.serialization.PersistenceManagerBinary;
 import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializable;
 import fr.iut63.a2ddicegameupdate.models.serialization.ScoreRankSerializable;
 
+/**
+ * Activité appelé lors du lancement du menu des meilleurs scores.
+ */
 public class ScoresActivity extends Activity {
 
     @Override
@@ -26,7 +29,6 @@ public class ScoresActivity extends Activity {
         int i = 0;
 
         if(scoreList.getRank() != null){
-            Log.e("ERROR : ", "TA MERE");
             for(ResultSerializable re : scoreList.getRank()){
                 if(i == 10) break;
                 score += re.getPseudo() + " " + re.getLevel() + " " + re.getScore() + " " + re.getTime() + "\n";

@@ -5,6 +5,9 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import java.util.Objects;
 
+/**
+ * Classe De l'état de la partie (timer, menu pause, etc).
+ */
 public class GameState implements Comparable<GameState>{
 
 
@@ -13,6 +16,9 @@ public class GameState implements Comparable<GameState>{
     public int timeSecondsProperty() {return timeSeconds;}
     public void setTimeSeconds(int timeSeconds) {this.timeSeconds = timeSeconds;}
 
+    /**
+     * Constructeur de la classe GameState avec le setter du timer à 0.
+     */
     public GameState(){
         setTimeSeconds(0);
     }

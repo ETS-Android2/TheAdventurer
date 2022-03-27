@@ -19,11 +19,18 @@ import java.net.Inet4Address;
 import fr.iut63.a2ddicegameupdate.activity.MainActivity;
 import fr.iut63.a2ddicegameupdate.activity.ScoresActivity;
 
-
+/**
+ * Classe manager de la persistence légère et profonde
+ */
 public class PersistenceManagerBinary extends PersistenceManager {
 
     private static final File fileSerialization = new File(System.getProperty("user.dir") + "/code/ressources/serialization/saveScores.ser");
 
+    /**
+     * Méthode de save des données d'une partie
+     * @param scoreRanking Liste des scores
+     * @param context Contexte de l'activité en cours
+     */
     @Override
     public void save(ScoreRankSerializable scoreRanking, Activity context) {
         try {
@@ -38,6 +45,11 @@ public class PersistenceManagerBinary extends PersistenceManager {
         }
     }
 
+    /**
+     * Méthode de load des top scores
+     * @param context Contexte de l'application actuelle
+     * @return La liste des scores
+     */
     @Override
     public ScoreRankSerializable load(Activity context) {
 

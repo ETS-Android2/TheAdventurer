@@ -1,7 +1,5 @@
 package fr.iut63.a2ddicegameupdate.models.player;
 
-import fr.iut63.a2ddicegameupdate.models.map.Map;
-
 public class PlayerGeneration extends Player {
 
     /**

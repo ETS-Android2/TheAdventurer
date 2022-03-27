@@ -30,6 +30,9 @@ import fr.iut63.a2ddicegameupdate.models.serialization.PersistenceManagerBinary;
 import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializable;
 import fr.iut63.a2ddicegameupdate.models.serialization.ScoreRankSerializable;
 
+/**
+ * Acivité lancé lors du lancement du jeu.
+ */
 public class Play extends Activity
 {
     private final DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -46,6 +49,10 @@ public class Play extends Activity
 
     private ImageView imgPerso;
 
+    /**
+     * Lancement de la vue du jeu, génération de la map et du personnage, création des boutons du jeu.
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,8 +117,10 @@ public class Play extends Activity
 
     }
 
+    /**
+     * Méthode appelé lors de la fin du jeu.
+     */
     public void endGame(){
-        Log.d("endGame", loop.isRunning() + "");
         if (!loop.isRunning()) {
             Button button_update_timer = findViewById(R.id.button_update_timer);
             button_update_timer.setOnClickListener(view -> {
@@ -146,7 +155,9 @@ public class Play extends Activity
             constraintLayout.addView(button);
 
             button.setOnClickListener(view -> {
-                ResultSerializable re = new ResultSerializable(String.valueOf(editText.getText()), difficulty, 15000-(difficulty*loop.getTime()), loop.getTime());
+                String name = String.valueOf(editText.getText());
+                if(name.equals("")) name = "Default";
+                ResultSerializable re = new ResultSerializable(name, difficulty, 15000-(difficulty*loop.getTime()), loop.getTime());
                 PersistenceManagerBinary pers = new PersistenceManagerBinary();
                 ScoreRankSerializable score = pers.load(this);
                 score.addResult(re);

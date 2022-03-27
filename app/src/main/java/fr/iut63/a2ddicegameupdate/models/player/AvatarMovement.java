@@ -11,6 +11,9 @@ import fr.iut63.a2ddicegameupdate.models.loop.Loop;
 import fr.iut63.a2ddicegameupdate.models.map.Map;
 import fr.iut63.a2ddicegameupdate.models.map.MapGeneration;
 
+/**
+ * Classe de déplacement du personnage
+ */
 public class AvatarMovement {
     private Case actualCase;
     private Case oldCase;
@@ -18,6 +21,13 @@ public class AvatarMovement {
     private Boolean isEnd = false;
     private Loop loop;
 
+    /**
+     * Constructeur de la classe avatarMovement
+     * @param imgPerso ImageView du personnage
+     * @param map Map sur laquelle bouge le personnage
+     * @param loop Loop de jeu observable
+     * @param play Activité du jeu.
+     */
     public void avatarMovement(ImageView imgPerso, MapGeneration map, Loop loop, Play play){
         this.play = play;
         this.loop = loop;
@@ -27,7 +37,6 @@ public class AvatarMovement {
             @Override
             public void run() {
                 int random = (int) ((Math.random() * 6)+1);
-                Log.d("random", String.valueOf(random));
                 for (int i = 0; i<random; i++){
                     if(actualCase == null && oldCase == null){
                         actualCase = listeCase.get(0);
@@ -47,7 +56,6 @@ public class AvatarMovement {
                         if(actualCase.isEnd()){
                             //isEnd = true;
                             loop.setRunning(false);
-                            Log.d("IsEnd", "Ok");
                             break;
                         }
                     }
@@ -65,14 +73,7 @@ public class AvatarMovement {
             }
         } );
         thread.start();
-        Log.d("isEnd", String.valueOf(isEnd));
-        /*if(isEnd){
-            setIsEnd();
-        }*/
+
     }
-    /*public void setIsEnd(){
-        play.endGame();
-        Log.d("End", "End");
-        loop.setRunning(false);
-    }*/
+
 }

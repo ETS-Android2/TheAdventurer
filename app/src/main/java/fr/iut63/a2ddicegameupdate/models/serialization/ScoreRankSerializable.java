@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Liste des scores à sérializr dans un fichier
+ */
 public class ScoreRankSerializable implements Serializable {
 
     private List<ResultSerializable> rank = new ArrayList<>();

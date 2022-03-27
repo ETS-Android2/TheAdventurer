@@ -2,6 +2,9 @@ package fr.iut63.a2ddicegameupdate.models.serialization;
 
 import java.io.Serializable;
 
+/**
+ * Résultats sérializable lors de la fin d'une partie
+ */
 public class ResultSerializable implements Serializable {
 
     private String pseudo;

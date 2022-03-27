@@ -9,11 +9,18 @@ import android.widget.RadioButton;
 
 import fr.iut63.a2ddicegameupdate.R;
 
+/**
+ * Activité du choix des difficultés avant le lancement du jeu.
+ */
 public class MenuSelectorActivity extends Activity {
 
     public static int difficulty = 1;
     public static int avatar = 1;
 
+    /**
+     * Lancement de la vue du menu
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +46,6 @@ public class MenuSelectorActivity extends Activity {
     void nextMenu(){
         Intent i = new Intent(this, AvatarSelectorActivity.class);
         i.putExtra("difficulty", difficulty);
-        Log.d("difficulty", String.valueOf(difficulty));
         startActivity(i);
     }
 }

@@ -19,11 +19,18 @@ import fr.iut63.a2ddicegameupdate.models.serialization.PersistenceManagerBinary;
 import fr.iut63.a2ddicegameupdate.models.serialization.ResultSerializable;
 import fr.iut63.a2ddicegameupdate.models.serialization.ScoreRankSerializable;
 
+/**
+ * Activité principale créée au lancement de l'application
+ */
 public class MainActivity extends AppCompatActivity {
 
     public static final String LE_FICHIER_RESULTAT = "test";
     private static final File fileSerialization = new File(System.getProperty("user.dir") + "assets/files/test.txt");
 
+    /**
+     * Lancement de la vue principale pour soit se rediriger vers le menu de sélection de la difficulté soit vers le menu des scores.
+     * @param savedInstanceState
+     */
     @SuppressLint("LongLogTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         buttonPartie.setOnClickListener(view -> switchActivities("gameActivity"));
     }
 
+    /**
+     * Switch entre activité du menu des scores ou activité du choix des difficulté.
+     * @param activity
+     */
     private void switchActivities(String activity) {
 
         Intent switchActivityIntent;

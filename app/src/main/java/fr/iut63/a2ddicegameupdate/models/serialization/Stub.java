@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import fr.iut63.a2ddicegameupdate.activity.ScoresActivity;
 
+/**
+ * STUB de l'application (persistence légère)
+ */
 public class Stub implements ILoadStates {
 
     @Override

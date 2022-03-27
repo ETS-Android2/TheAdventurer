@@ -10,12 +10,16 @@ import android.widget.RadioButton;
 import fr.iut63.a2ddicegameupdate.R;
 
 /**
- * Activité de séléction du personnage
+ * Activité de séléction du personnage avant le lancement du jeu
  */
 public class AvatarSelectorActivity extends Activity {
 
     public static int avatar = 1;
 
+    /**
+     * Lancement de la vue du choix des personnage à la  création de l'activité
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,9 @@ public class AvatarSelectorActivity extends Activity {
 
     }
 
+    /**
+     * Méthode appelé lors du lancement du jeu (stockage des choix du joueur sur la difficulté et l'avatar puis lancement)
+     */
     void startGame() {
 
         Bundle extras = getIntent().getExtras();
@@ -48,7 +55,6 @@ public class AvatarSelectorActivity extends Activity {
             i.putExtra("difficulty", value);
             i.putExtra("avatar", avatar);
             startActivity(i);
-            Log.e("Start", "Start OK");
         }else{
             Log.e("ERROR", "Start failed.");
         }

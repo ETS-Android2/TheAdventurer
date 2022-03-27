@@ -29,9 +29,6 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".activity.GameActivity"
-            android:exported="true" />
-        <activity
             android:name=".activity.Play"
             android:exported="true"
             android:screenOrientation="landscape"/>

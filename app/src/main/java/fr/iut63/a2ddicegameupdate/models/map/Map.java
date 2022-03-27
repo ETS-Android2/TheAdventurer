@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import fr.iut63.a2ddicegameupdate.models.Case;
 
-
+/**
+ * Classe contenant toutes les informations d'une map généré dans le jeu.
+ */
 public class Map {
     private final int sizeTileWidth;
     private final int sizeTileHeight;
@@ -17,8 +19,6 @@ public class Map {
     private int tileLengthY;
     private final int offsetX;
     private final int offsetY;
-    private final boolean offsetXFlag;
-    private final boolean offsetYFlag;
     private int[][] mapFirstLayout;
     private int[][] mapSecondLayout;
     private int[][] mapThirdLayout;
@@ -27,7 +27,9 @@ public class Map {
     private int[][] mapThirdLayout2;
 
     /**
-     * Constructor of the Map class
+     * Constructeur de la classe map
+     * @param mapWidth largeur de la map
+     * @param mapHeight heuteur de la map
      */
     public Map(int mapWidth , int mapHeight) {
 
@@ -38,9 +40,9 @@ public class Map {
         offsetX = tileLengthX * 64 - resolutionWidth;
         offsetY = tileLengthY * 64 - resolutionHeight;
 
-        offsetXFlag = offsetX != 0;
+        boolean offsetXFlag = offsetX != 0;
 
-        offsetYFlag = offsetY != 0;
+        boolean offsetYFlag = offsetY != 0;
 
         this.sizeTileWidth = resolutionWidth / 42;
         this.sizeTileHeight = resolutionHeight / 42;
@@ -71,8 +73,6 @@ public class Map {
         }
     }
 
-
-
     /**
      * Method to get the map
      * @return map
@@ -98,27 +98,11 @@ public class Map {
     }
 
     /**
-     * Method to get the X coordonate of the start case
-     * @return coordStartX
-     */
-    public int getCoordStartX(){
-        return coordStartX;
-    }
-
-    /**
      * Method to set the X coordonate of the start case
      * @param x x coordinate setter for the starting case
      */
     public void setCoordStartX(int x){
         this.coordStartX = x;
-    }
-
-    /**
-     * Method to get the Y coordonate of the start case
-     * @return coordStartY
-     */
-    public int getCoordStartY(){
-        return coordStartY;
     }
 
     /**
@@ -129,98 +113,143 @@ public class Map {
         this.coordStartY = y;
     }
 
+    /**
+     * Getter de la résolution en largeur de l'écran
+     * @return resolutionWidth
+     */
     public int getResolutionWidth() {
         return resolutionWidth;
     }
 
+    /**
+     * Getter de la résolution en hauteur de l'écran
+     * @return resolutionHeight
+     */
     public int getResolutionHeight() {
         return resolutionHeight;
     }
 
+    /**
+     * Getter de la largeur du Tile (X)
+     * @return tileLengthX
+     */
     public int getTileLengthX() {
         return tileLengthX;
     }
 
+    /**
+     * Getter de la hauteur du Tile (Y)
+     * @return tileLengthY
+     */
     public int getTileLengthY() {
         return tileLengthY;
     }
 
+    /**
+     * Setter de la largeur du Tile (X)
+     * @param x
+     */
     public void setTileLengthX(int x){ this.tileLengthX = x;}
 
+    /**
+     * Setter de la hauteur du Tile (Y)
+     * @param y
+     */
     public void setTileLengthY(int y){ this.tileLengthY = y;}
 
-    public int getOffsetY() {
-        return offsetY;
-    }
-
-    public int getOffsetX() {
-        return offsetX;
-    }
-
-    public boolean isOffsetYFlag() {
-        return offsetYFlag;
-    }
-
-    public boolean isOffsetXFlag() {
-        return offsetXFlag;
-    }
-
-
+    /**
+     * Getter de la première couche de la map (tiles de sol sans colision)
+     * @return mapFirstLayout
+     */
     public int[][] getMapFirstLayout() {
         return mapFirstLayout;
     }
 
+    /**
+     * Setter de la première couche de la map (tiles de sol sans colision)
+     * @param mapFirstLayout
+     */
     public void setMapFirstLayout(int[][] mapFirstLayout) {
         this.mapFirstLayout = mapFirstLayout;
     }
 
+    /**
+     * Getter de la deuxième couche de la map (tiles de sol avec colision)
+     * @return mapSecondLayout
+     */
     public int[][] getMapSecondLayout() {
         return mapSecondLayout;
     }
 
+    /**
+     * Setter de la deuxième couche de la map (tiles de sol sans colision)
+     * @param mapSecondLayout
+     */
     public void setMapSecondLayout(int[][] mapSecondLayout) {
         this.mapSecondLayout = mapSecondLayout;
     }
 
+    /**
+     * Getter de la troisième couche de la map (tiles de décors)
+     * @return mapThirdLayout
+     */
     public int[][] getMapThirdLayout() {
         return mapThirdLayout;
     }
 
+    /**
+     * Setter de la troisième couche de la map (tiles de sol sans colision)
+     * @param mapThirdLayout
+     */
     public void setMapThirdLayout(int[][] mapThirdLayout) {
-        this.mapThirdLayout = mapThirdLayout;
+        this.mapThirdLayout = mapThirdLayout ;
     }
 
+    /**
+     * Getter de la première couche de niveau 2
+     * @return mapFirstLayout2
+     */
     public int[][] getMapFirstLayout2() {
         return mapFirstLayout2;
     }
 
+    /**
+     * Setter de la première couche de niveau 2
+     * @param mapFirstLayout2
+     */
     public void setMapFirstLayout2(int[][] mapFirstLayout2) {
         this.mapFirstLayout2 = mapFirstLayout2;
     }
 
+    /**
+     * Getter de la deuxième couche de niveau 2
+     * @return mapSecondLayout2
+     */
     public int[][] getMapSecondLayout2() {
         return mapSecondLayout2;
     }
 
+    /**
+     * Setter de la deuxième couche de niveau 2
+     * @param mapSecondLayout2
+     */
     public void setMapSecondLayout2(int[][] mapSecondLayout2) {
         this.mapSecondLayout2 = mapSecondLayout2;
     }
 
+    /**
+     * Getter de la troisème couche de niveau 2
+     * @return mapThirdLayout2
+     */
     public int[][] getMapThirdLayout2() {
         return mapThirdLayout2;
     }
 
+    /**
+     * Setter de la troisième couche de niveau 2
+     * @param mapThirdLayout2
+     */
     public void setMapThirdLayout2(int[][] mapThirdLayout2) {
         this.mapThirdLayout2 = mapThirdLayout2;
-    }
-
-
-
-    public void setMapTile(int xCord , int yCord , int updatedValue){
-        this.mapFirstLayout[yCord][xCord] = updatedValue;
-    }
-
-    public boolean isCaseEmpty(int xCord , int yCord){
-        return mapFirstLayout[yCord][xCord] == 0;
     }
 }

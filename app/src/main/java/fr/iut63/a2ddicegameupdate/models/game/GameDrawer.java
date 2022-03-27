@@ -14,6 +14,9 @@ import java.util.List;
 import fr.iut63.a2ddicegameupdate.activity.Play;
 import fr.iut63.a2ddicegameupdate.models.map.Map;
 
+/**
+ * Classe génératrice de la map et du personnage au lancement du jeu.
+ */
 public class GameDrawer {
 
     private final Map map;
@@ -25,6 +28,11 @@ public class GameDrawer {
     private final List<Bitmap> tiles;
     private final List<Bitmap> avatar;
 
+    /**
+     * Constructeur de la classe GameDrawer (Classe de dessin de la map et du personnage)
+     * @param context Contexte de l'application lors de la génération de la map
+     * @param mapTile Map généré lors du lancement du jeu passé en paramètre pour dessiner la grid d'images
+     */
     public GameDrawer(Play context, Map mapTile) {
         activityGame = context;
         map = mapTile;
@@ -42,6 +50,10 @@ public class GameDrawer {
         this.avatar = loadAvatarSet();
     }
 
+    /**
+     * Méthode loader du tileset.
+     * @return Retourne la liste des bitmaps avec toutes les tiles.
+     */
     private List<Bitmap> loadTileSet() {
         ArrayList<Bitmap> tiles = new ArrayList<>();
 
@@ -53,7 +65,6 @@ public class GameDrawer {
                 tiles.add(Bitmap.createScaledBitmap(bitmap, map.getTileLengthX(), map.getTileLengthY(), true));
             }*/
             for(int i = 0; i < 2017; i++){
-                Log.d("PATH", i+"");
                 InputStream tileIS = activityGame.getAssets().open("tiles/"+i+".png");
                 Bitmap bitmap = BitmapFactory.decodeStream(tileIS);
                 tiles.add(Bitmap.createScaledBitmap(bitmap, map.getTileLengthX(), map.getTileLengthY(), true));
@@ -65,12 +76,15 @@ public class GameDrawer {
         return tiles;
     }
 
+    /**
+     * Méthode loader du tileset du personnage.
+     * @return Retourne la liste des bitmaps avec toutes les tiles du personnage.
+     */
     private List<Bitmap> loadAvatarSet(){
         ArrayList<Bitmap> avavar = new ArrayList<>();
 
         try {
             for (String path : activityGame.getAssets().list("avatar/")) {
-                Log.d("PATH", path);
                 InputStream tileIS = activityGame.getAssets().open("avatar/"+path);
                 Bitmap bitmap = BitmapFactory.decodeStream(tileIS);
                 avavar.add(Bitmap.createScaledBitmap(bitmap, map.getTileLengthX(), map.getTileLengthY(), true));
@@ -81,6 +95,10 @@ public class GameDrawer {
         return avavar;
     }
 
+    /**
+     * Drawer de la map en fonction de la difficulté
+     * @param difficulty difficulté choisi par le joueur.
+     */
     public void drawMap(int difficulty) {
         this.difficulty = difficulty;
         for (int i = 0; i < mapH; i++) {
@@ -137,6 +155,11 @@ public class GameDrawer {
         }
     }
 
+    /**
+     * Drawer du personnage en fonction de l'avatar choisi au début
+     * @param avatarInt Avatar choisi au début passé en paramètre
+     * @return return l'imageView du personnage pour pouvoir l'animé
+     */
     public ImageView drawPlayer(int avatarInt) {
         int yDepart = 24;
         for (int i = 0; i < mapH; i++) {
@@ -147,7 +170,6 @@ public class GameDrawer {
                 if (i == yDepart && j == 0) {
                     ImageView tileIMG = new ImageView(activityGame);
                     avatarInt --;
-                    Log.d("avatar", String.valueOf(avatarInt));
                     tileIMG.setImageBitmap(avatar.get(avatarInt));
                     tileIMG.setX(j * map.getTileLengthX());
                     tileIMG.setY(i * map.getTileLengthY());
@@ -160,18 +182,4 @@ public class GameDrawer {
         }
         return null;
     }
-
-    public TextView drawTimer() {
-        TextView tw = new TextView(activityGame);
-        tw.setText("0");
-        tw.setY(40);
-        tw.setX(40);
-
-        activityGame.getConstraintLayout().addView(tw);
-        return tw;
-    }
-    public List<Bitmap> getAvatar(){
-        return avatar;
-    }
-
 }
