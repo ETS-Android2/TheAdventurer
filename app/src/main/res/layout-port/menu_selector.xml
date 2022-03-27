@@ -20,14 +20,16 @@
         android:id="@+id/textViewScore"
         android:layout_width="411dp"
         android:layout_height="701dp"
-        android:layout_marginTop="28dp"
         android:gravity="center_horizontal"
         android:text="Crash error"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintVertical_bias="0.503" />
 
     <TextView
         android:id="@+id/enteteView"
@@ -37,7 +39,7 @@
         android:text="@string/score_entete"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textViewScore"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.143" />
